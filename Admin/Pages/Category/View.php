@@ -54,8 +54,8 @@ if (isset($_POST['update'])){
             <div class="col-md-12">
                 <div class="card">
                   <?php
-                  $id = intval($_GET['id']);
-                  $query = mysqli_query($link,"SELECT * FROM Category WHERE Id=$id");
+                  $slug = $_GET['category'];
+                  $query = mysqli_query($link,"SELECT * FROM Category WHERE Slug='$slug'");
                   while($row = mysqli_fetch_array($query))
                   { ?>
                     <form class="form-horizontal" method="post">

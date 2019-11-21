@@ -14,13 +14,13 @@ include '../../Bootstrap.php';
      <meta name="description" content="">
      <meta name="author" content="">
      <!-- Favicon icon -->
-     <link rel="icon" type="image/png" sizes="16x16" href="<?php echo ADMIN_PATH; ?>Assets/images/favicon.png">
+     <link rel="icon" type="image/png" sizes="16x16" href="<?php echo ADMIN_URL; ?>Assets/images/favicon.png">
      <title>Dashboard | Admin</title>
      <!-- Custom CSS -->
-     <link rel="stylesheet" type="text/css" href="<?php echo ADMIN_PATH; ?>Assets/libs/select2/dist/css/select2.min.css">
-     <link rel="stylesheet" type="text/css" href="<?php echo ADMIN_PATH; ?>Assets/libs/jquery-minicolors/jquery.minicolors.css">
-     <link rel="stylesheet" type="text/css" href="<?php echo ADMIN_PATH; ?>Assets/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
-     <link href="<?php echo ADMIN_PATH; ?>Dist/css/style.min.css" rel="stylesheet">
+     <link rel="stylesheet" type="text/css" href="<?php echo ADMIN_URL; ?>Assets/libs/select2/dist/css/select2.min.css">
+     <link rel="stylesheet" type="text/css" href="<?php echo ADMIN_URL; ?>Assets/libs/jquery-minicolors/jquery.minicolors.css">
+     <link rel="stylesheet" type="text/css" href="<?php echo ADMIN_URL; ?>Assets/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+     <link href="<?php echo ADMIN_URL; ?>Dist/css/style.min.css" rel="stylesheet">
      <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
      <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
      <!--[if lt IE 9]>
@@ -54,21 +54,21 @@ include '../../Bootstrap.php';
                          <b class="logo-icon p-l-10">
                              <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                              <!-- Dark Logo icon -->
-                             <img src="<?php echo ADMIN_PATH; ?>Assets/images/logo-icon.png" alt="homepage" class="light-logo" />
+                             <img src="<?php echo ADMIN_URL; ?>Assets/images/logo-icon.png" alt="homepage" class="light-logo" />
 
                          </b>
                          <!--End Logo icon -->
                           <!-- Logo text -->
                          <span class="logo-text">
                               <!-- dark Logo text -->
-                              <img src="<?php echo ADMIN_PATH; ?>Assets/images/logo-text.png" alt="homepage" class="light-logo" />
+                              <img src="<?php echo ADMIN_URL; ?>Assets/images/logo-text.png" alt="homepage" class="light-logo" />
 
                          </span>
                          <!-- Logo icon -->
                          <!-- <b class="logo-icon"> -->
                              <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                              <!-- Dark Logo icon -->
-                             <!-- <img src="<?php echo ADMIN_PATH; ?>Assets/images/logo-text.png" alt="homepage" class="light-logo" /> -->
+                             <!-- <img src="<?php echo ADMIN_URL; ?>Assets/images/logo-text.png" alt="homepage" class="light-logo" /> -->
 
                          <!-- </b> -->
                          <!--End Logo icon -->
