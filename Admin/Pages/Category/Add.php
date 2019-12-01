@@ -1,4 +1,3 @@
-
 <?php include '../Partials/Header.php'; ?>
 <?php include '../Partials/Sidebar.php'; ?>
 <?php
