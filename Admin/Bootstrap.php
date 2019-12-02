@@ -1,7 +1,7 @@
 <?php
 include "../Bootstrap.php";
 define("ADMIN_PATH",dirname(__FILE__)."/");
-define ("ADMIN_URL","http://localhost/php-tests/GadgetCommerce/Admin/");
+define ("ADMIN_URL","http://localhost/GadgetCommerce/Admin/");
 
 function slugify($text)
 {

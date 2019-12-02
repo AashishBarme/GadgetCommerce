@@ -1,15 +1,16 @@
-<?php include './Partials/Header.php'; ?>
-<?php include './Partials/Sidebar.php'; ?>
+<?php getPartialView("Header") ?>
+<?php getPartialView("Sidebar");?>
 <?php
+$CategoryModel = new Models_CategoryModel();
 if (isset($_POST['submit'])){
     $name = $_POST['name'];
     $description = $_POST['description'];
-    $slug = slugify($name);
-    $query=mysqli_query($link,"insert into Category(Name,Slug,Description) values('$name','$slug','$description')");
-    if ($query){
+    $query = $CategoryModel->addCategory($name,$description);
+    if ($query = ' '){
       echo '<script> alert("Item Added"); </script>';
     } else {
       echo '<script> alert("Something went Wrong"); </script>';
+
     }
 }
 ?>
@@ -77,4 +78,4 @@ if (isset($_POST['submit'])){
           </div>
         </div>
     </div>
-<?php include '../Partials/Footer.php'; ?>
+<?php getPartialView("Footer") ?>

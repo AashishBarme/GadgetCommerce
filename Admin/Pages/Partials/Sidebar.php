@@ -12,8 +12,8 @@
                 </li>
                 <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Category</span></a>
                     <ul aria-expanded="false" class="collapse  first-level">
-                        <li class="sidebar-item"><a href="<?php echo ADMIN_URL; ?>Pages/Category/Add.php" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu">Add Category</span></a></li>
-                        <li class="sidebar-item"><a href="<?php echo ADMIN_URL; ?>Pages/Category/List.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu">List Category</span></a></li>
+                        <li class="sidebar-item"><a href="<?php echo ADMIN_URL; ?>Index.php?page=Category/Add" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu">Add Category</span></a></li>
+                        <li class="sidebar-item"><a href="<?php echo ADMIN_URL; ?>Index.php?page=Category/List" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu">List Category</span></a></li>
                     </ul>
                 </li>
             </ul>
