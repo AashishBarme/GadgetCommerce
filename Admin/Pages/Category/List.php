@@ -1,14 +1,15 @@
-<?php include '../Partials/Header.php'; ?>
-<?php include '../Partials/Sidebar.php'; ?>
+<?php getPartialView("Header") ?>
+<?php getPartialView("Sidebar");?>
 <?php
+$CategoryModel = new Models_CategoryModel();
 
 if (isset($_GET['action'])){
-  $slug = $_GET['category'];
-  $query = mysqli_query($link,"DELETE FROM Category WHERE Slug='$slug'");
-  if ($query){
-    echo '<script> alert("Category Deleted"); </script>';
-    echo "<script> window.location.replace('".ADMIN_URL."Pages/Category/List.php'); </script>";
-  }
+    $slug = $_GET['category'];
+    $query=$CategoryModel->deleteCategoryBySlug($slug);
+    if ($query){
+        echo '<script> alert("Category Deleted"); </script>';
+        echo "<script> window.location.replace('".ADMIN_URL."Pages/Category/List.php'); </script>";
+    }
 } ?>
 <div class="page-wrapper">
     <!-- ============================================================== -->
@@ -39,56 +40,53 @@ if (isset($_GET['action'])){
         <div class="row">
             <div class="col-12">
 
-              <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">List Table</h5>
-                                <div class="table-responsive">
-                                    <table id="zero_config" class="table table-striped table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th>SN</th>
-                                                <th>Name</th>
-                                                <th>Description</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-<?php
-$query = mysqli_query($link,"SELECT Slug,Name,Description FROM Category");
-$sn = 1;
-while($row = mysqli_fetch_array($query)){
-$slug = $row['Slug'];
- ?>
-                                            <tr>
-                                                <td><?php echo $sn; ?></td>
-                                                <td><?php echo $row['Name']; ?></td>
-                                                <td><?php echo $row['Description']; ?></td>
-                                                <td>
-                                                  <a href="View.php?category=<?php echo $slug; ?>"><input type="submit" class="btn btn-info btn-sm" value="Edit"></a>
-                                                  <a href="List.php?category=<?php echo $slug; ?>&&action=del"><button onclick="delCategory()" class="btn btn-danger btn-sm">Delete</button></a>
-                                                </td>
-                                            </tr>
-<?php $sn++; } ?>
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th>SN</th>
-                                                <th>Name</th>
-                                                <th>Description</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
-                                </div>
-
-                            </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">List Table</h5>
+                        <div class="table-responsive">
+                            <table id="zero_config" class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>SN</th>
+                                        <th>Name</th>
+                                        <th>Description</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php    $CategoryCollection= $CategoryModel->getCategoryList();?>
+                                    <?php foreach($CategoryCollection as $key=>$row): ?>
+                                        <tr>
+                                            <td><?php echo ++$key; ?></td>
+                                            <td><?php echo $row->Name; ?></td>
+                                            <td><?php echo $row->Description; ?></td>
+                                            <td>
+                                                <a href="./?page=Category/View&category=<?php echo $row->Slug; ?>"><input type="submit" class="btn btn-info btn-sm" value="Edit"></a>
+                                                <a href="./?page=Category/List&category=<?php echo $row->Slug; ?>&&action=del"><button onclick="delCategory()" class="btn btn-danger btn-sm">Delete</button></a>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>SN</th>
+                                        <th>Name</th>
+                                        <th>Description</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
                         </div>
+
                     </div>
-                  </div>
-              </div>
-<script>
-  function delCategory(){
-  confirm("Do You want to delete ? ");
-  }
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+    function delCategory(){
+        confirm("Do You want to delete ? ");
+    }
 </script>
-<?php include '../Partials/Footer.php'; ?>
+<?php getPartialView("Footer");?>
+<?php #include '../Partials/Footer.php'; ?>

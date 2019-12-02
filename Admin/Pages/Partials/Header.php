@@ -1,7 +1,3 @@
-<?php
-include '../../Config/DbConfig.php';
-include '../../Bootstrap.php';
- ?>
  <!DOCTYPE html>
  <html dir="ltr" lang="en">
 

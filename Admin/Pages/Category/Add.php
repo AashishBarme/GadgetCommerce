@@ -1,5 +1,5 @@
-<?php include '../Partials/Header.php'; ?>
-<?php include '../Partials/Sidebar.php'; ?>
+<?php include './Partials/Header.php'; ?>
+<?php include './Partials/Sidebar.php'; ?>
 <?php
 if (isset($_POST['submit'])){
     $name = $_POST['name'];
