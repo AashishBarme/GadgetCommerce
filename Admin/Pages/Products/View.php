@@ -1,19 +1,16 @@
+<?php getPartialView("Header"); ?>
+<?php getPartialView("Sidebar");?>
 <?php
-ini_set('display_startup_errors', true);
-error_reporting(E_ALL);
-ini_set('display_errors', true);
-include '../Partials/Header.php'; ?>
-<?php include '../Partials/Sidebar.php'; ?>
-<?php
+$productModel = new Models_ProductModel();
+$categoryModel = new Models_CategoryModel();
 if (isset($_POST['update'])){
     $id = intval($_POST['id']);
     $name = $_POST['name'];
     $sku = $_POST['sku'];
     $price = $_POST['price'];
     $catId = $_POST['categoryId'];
-    $slug = slugify($name);
-    $query=mysqli_query($link,"UPDATE Product SET ProductName='$name',ProductSlug='$slug',ProductPrice='$price',ProductSku='$sku',CategoryId='$catId' WHERE Id='$id'");
-      if ($query){
+    $query = $productModel->updateProductById($id,$name,$price,$sku,$catId);
+      if ($query = " "){
         echo '<script> alert("Item Updated"); </script>';
       } else {
         echo '<script> alert("Something went Wrong"); </script>';
@@ -29,7 +26,7 @@ if (isset($_POST['update'])){
     <div class="page-breadcrumb">
         <div class="row">
             <div class="col-12 d-flex no-block align-items-center">
-                <h4 class="page-title">Add Product</h4>
+                <h4 class="page-title">View Product</h4>
                 <div class="ml-auto text-right">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
@@ -56,29 +53,28 @@ if (isset($_POST['update'])){
                 <div class="card">
                   <?php
                   $slug = $_GET['product'];
-                  $query = mysqli_query($link,"SELECT * FROM Product WHERE ProductSlug='$slug'");
-                  while($row = mysqli_fetch_array($query))
-                  { ?>
+                   $productSingleData = $productModel->displayProductBySlug($slug);
+                   foreach($productSingleData as $key => $row) { ?>
                     <form class="form-horizontal" method="post" enctype="multipart/form-data">
-                         <input type="hidden" name="id" value="<?php echo $row['Id']; ?>">
+                         <input type="hidden" name="id" value="<?php echo $row->Id; ?>">
                         <div class="card-body">
                             <h4 class="card-title">Product Detail</h4>
                             <div class="form-group row">
                                 <label for="name" class="col-sm-3 text-right control-label col-form-label">Product Name</label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="name" class="form-control" id="name" value="<?php echo $row['ProductName']; ?>">
+                                    <input type="text" name="name" class="form-control" id="name" value="<?php echo $row->ProductName; ?>">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="name" class="col-sm-3 text-right control-label col-form-label">Product Sku</label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="sku" class="form-control" id="sku" value="<?php echo $row['ProductSku']; ?>">
+                                    <input type="text" name="sku" class="form-control" id="sku" value="<?php echo $row->ProductSku; ?>">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="name" class="col-sm-3 text-right control-label col-form-label">Product Price</label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="price" class="form-control" id="price" value="<?php echo $row['ProductPrice']; ?>">
+                                    <input type="text" name="price" class="form-control" id="price" value="<?php echo $row->ProductPrice; ?>">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -91,14 +87,12 @@ if (isset($_POST['update'])){
                               <label for="category-name" class="col-sm-3 text-right control-label col-form-label">Category</label>
                               <div class="col-sm-9">
                                 <select name="categoryId" class="form-control">
-
-                                    <?php $query = mysqli_query($link,"SELECT Id,Name FROM Category");
-                                      if (!empty($query)){
-                                        while($catRow = mysqli_fetch_array($query)){
-                                          $id = $catRow['Id'];
-                                          $selectedCatId = $row['CategoryId']; ?>
-                                    <option value="<?php echo $id; ?>" <?php if($id == $selectedCatId) { echo 'selected = selected'; } ?>><?php echo $catRow['Name']; ?></option>
-                                  <?php  }} ?>
+                                    <?php $categoryData = $categoryModel->getCategoryList();
+                                         foreach ($categoryData  as $key => $cdata){
+                                          $id = $cdata->Id;
+                                          $selectedCatId = $row->CategoryId; ?>
+                                    <option value="<?php echo $id; ?>" <?php if($id == $selectedCatId) { echo 'selected = selected'; } ?>><?php echo $cdata->Name; ?></option>
+                                  <?php  } ?>
                                 </select>
                               </div>
                             </div>
@@ -115,4 +109,4 @@ if (isset($_POST['update'])){
           </div>
         </div>
     </div>
-<?php include '../Partials/Footer.php'; ?>
+<?php getPartialView('Footer'); ?>

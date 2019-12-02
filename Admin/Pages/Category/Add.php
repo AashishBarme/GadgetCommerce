@@ -1,4 +1,4 @@
-<?php getPartialView("Header") ?>
+<?php getPartialView("Header"); ?>
 <?php getPartialView("Sidebar");?>
 <?php
 $CategoryModel = new Models_CategoryModel();

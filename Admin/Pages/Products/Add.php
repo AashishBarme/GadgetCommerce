@@ -1,14 +1,11 @@
+<?php getPartialView("Header"); ?>
+<?php getPartialView("Sidebar");?>
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-include '../Partials/Header.php'; ?>
-<?php include '../Partials/Sidebar.php'; ?>
-<?php
+$productModel = new Models_ProductModel();
+$CategoryModel = new Models_CategoryModel();
 if (isset($_POST['submit'])){
     $catId = $_POST['categoryId'];
     $name = $_POST['name'];
-    $slug = slugify($name);
     $sku = $_POST['sku'];
     $price = $_POST['price'];
     $imgfile=$_FILES["productImage"]["name"];
@@ -25,10 +22,9 @@ if (isset($_POST['submit'])){
     {
     // Code for move image into directory
     move_uploaded_file($_FILES['productImage']['tmp_name'], ADMIN_PATH.'Uploads/'.$imgfile);
-    $status=1;
-      $query=mysqli_query($link,"insert into Product(CategoryId,ProductName,ProductSlug,ProductSku,ProductPrice,ProductImage) values('$catId','$name','$slug','$sku','$price','$imgfile')");
+      $query = $productModel->addProductData($catId,$name,$sku,$price,$imgfile);
     }
-    if ($query){
+    if ($query =' '){
       echo '<script> alert("Item Added"); </script>';
     } else {
       echo '<script> alert("Something went Wrong"); </script>';
@@ -36,7 +32,6 @@ if (isset($_POST['submit'])){
     }
 }
 ?>
-
 
 
 <!-- Page wrapper  -->
@@ -73,6 +68,7 @@ if (isset($_POST['submit'])){
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
+
                     <form class="form-horizontal" method="post" enctype="multipart/form-data">
                         <div class="card-body">
                             <h4 class="card-title">Product Detail</h4>
@@ -105,11 +101,10 @@ if (isset($_POST['submit'])){
                               <div class="col-sm-9">
                                 <select name="categoryId" class="form-control">
                                     <option value="0">None</option>
-                                    <?php $query = mysqli_query($link,"SELECT Id,Name FROM Category");
-                                      if (!empty($query)){
-                                      while($row = mysqli_fetch_array($query)){ ?>
-                                    <option value="<?php echo $row['Id']; ?>"><?php echo $row['Name']; ?></option>
-                                  <?php  }} ?>
+                                      <?php $categoryData = $CategoryModel->getCategoryList();
+                                         foreach ($categoryData as $key => $row){ ?>
+                                          <option value="<?php echo $row->Id; ?>"><?php echo $row->Name; ?></option>
+                                          <?php } ?>
                                 </select>
                               </div>
                             </div>
@@ -125,4 +120,4 @@ if (isset($_POST['submit'])){
           </div>
         </div>
     </div>
-<?php include '../Partials/Footer.php'; ?>
+<?php getPartialView('Footer'); ?>

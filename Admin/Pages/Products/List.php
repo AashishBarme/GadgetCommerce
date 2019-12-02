@@ -1,15 +1,16 @@
-<?php include '../Partials/Header.php'; ?>
-<?php include '../Partials/Sidebar.php'; ?>
+<?php getPartialView("Header"); ?>
+<?php getPartialView("Sidebar");?>
 <?php
-
+$productModel = new Models_ProductModel();
+$categoryModel = new Models_CategoryModel();
 if (isset($_GET['action'])){
   $slug = $_GET['product'];
-  $query = mysqli_query($link,"DELETE FROM Category WHERE Slug='$slug'");
+  $query=$productModel->deleteProductBySlug($slug);
   if ($query){
-    echo '<script> alert("Product Deleted"); </script>';
-    echo "<script> window.location.replace('".ADMIN_URL."Pages/Products/List.php'); </script>";
+    echo '<script> alert("Category Deleted"); </script>';
   }
-} ?>
+}
+ ?>
 <div class="page-wrapper">
     <!-- ============================================================== -->
     <!-- Bread crumb and right sidebar toggle -->
@@ -23,7 +24,7 @@ if (isset($_GET['action'])){
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Category List</li>
+                            <li class="breadcrumb-item active" aria-current="page">Product List</li>
                         </ol>
                     </nav>
                 </div>
@@ -56,26 +57,23 @@ if (isset($_GET['action'])){
                                             </tr>
                                         </thead>
                                         <tbody>
-<?php
-$query = mysqli_query($link,"SELECT * FROM Product");
-$sn = 1;
-while($row = mysqli_fetch_array($query)){
-$slug = $row['ProductSlug'];
- ?>
+                                          <?php $ProductCollection = $productModel->getProductList();?>
+                                          <?php foreach ($ProductCollection as $key => $row){ ?>
                                             <tr>
-                                                <td><?php echo $sn; ?></td>
-                                                <td><?php echo $row['ProductImage']; ?></td>
-                                                <td><?php echo $row['ProductName']; ?></td>
-                                                <td><?php echo $row['ProductSku']; ?></td>
-                                                <td><?php echo $row['ProductPrice']; ?></td>
-                                                <td><?php echo $row['CategoryId']; ?></td>
-
-                                                <td>
-                                                  <a href="View.php?product=<?php echo $slug; ?>"><input type="submit" class="btn btn-info btn-sm" value="Edit"></a>
-                                                  <a href="List.php?product=<?php echo $slug; ?>&&action=del"><button onclick="delCategory()" class="btn btn-danger btn-sm">Delete</button></a>
+                                                <td><?php echo ++$key; ?></td>
+                                                <td><img width="60px" src="<?php echo ADMIN_URL."Uploads/".$row->ProductImage; ?>"></td>
+                                                <td><?php echo $row->ProductName; ?></td>
+                                                <td><?php echo $row->ProductSku; ?></td>
+                                                <td><?php echo $row->ProductPrice; ?></td>
+                                                <td><?php $categoryData = $categoryModel->getCategoryDataById($row->CategoryId);
+                                                           foreach($categoryData as $key => $value){ echo $value->Name; }  ?>
+                                                </td>
+                                                 <td>
+                                                  <a href="./Index.php?page=Products/View&product=<?php echo $row->ProductSlug; ?>"><input type="submit" class="btn btn-info btn-sm" value="Edit"></a>
+                                                  <a href="./Index.php?page=Products/List&product=<?php echo $row->ProductSlug; ?>&&action=del"><button onclick="delCategory()" class="btn btn-danger btn-sm">Delete</button></a>
                                                 </td>
                                             </tr>
-<?php $sn++; } ?>
+                                          <?php } ?>
                                         </tbody>
                                         <tfoot>
                                             <tr>
@@ -96,9 +94,4 @@ $slug = $row['ProductSlug'];
                     </div>
                   </div>
               </div>
-<script>
-  function delCategory(){
-  confirm("Do You want to delete ? ");
-  }
-</script>
-<?php include '../Partials/Footer.php'; ?>
+<?php getPartialView('Footer'); ?>

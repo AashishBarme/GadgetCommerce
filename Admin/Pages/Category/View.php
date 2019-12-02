@@ -1,4 +1,4 @@
-<?php getPartialView("Header") ?>
+<?php getPartialView("Header"); ?>
 <?php getPartialView("Sidebar");?>
 <?php
 $CategoryModel = new Models_CategoryModel();
@@ -26,7 +26,7 @@ if (isset($_POST['update'])){
     <div class="page-breadcrumb">
         <div class="row">
             <div class="col-12 d-flex no-block align-items-center">
-                <h4 class="page-title">Add Category</h4>
+                <h4 class="page-title">View Category</h4>
                 <div class="ml-auto text-right">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
@@ -71,9 +71,7 @@ if (isset($_POST['update'])){
                             <div class="form-group row">
                                 <label for="description" class="col-sm-3 text-right control-label col-form-label">Description</label>
                                 <div class="col-sm-9">
-                                <textarea name="description" rows="5" cols="80">
-                                <?php echo htmlentities($data->Description); ?>
-                                </textarea>
+                                <textarea name="description" rows="5" cols="80"><?php echo htmlentities($data->Description); ?></textarea>
                                 </div>
                             </div>
                         </div>

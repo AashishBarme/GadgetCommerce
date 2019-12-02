@@ -7,9 +7,13 @@ class Models_CategoryModel extends Models_AbstractModel
       $sql = "INSERT into Category(Name,Slug,Description) VALUES('$name','$slug','$description')";
       $query = $this->getDb()->query($sql);
     }
+    
     public function getCategoryList(){
+        return $this->getDb()->fetchAll("SELECT Slug,Name,Description,Id FROM Category");
+    }
 
-        return $this->getDb()->fetchAll("SELECT Slug,Name,Description FROM Category");
+    public function getCategoryDataById($id){
+      return $this->getDb()->fetchAll("SELECT Name,Slug FROM Category WHERE Id='$id'");
     }
 
     public function updateCategoryById($id,$name,$description){

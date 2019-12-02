@@ -1,4 +1,4 @@
-<?php getPartialView("Header") ?>
+<?php getPartialView("Header"); ?>
 <?php getPartialView("Sidebar");?>
 <?php
 $CategoryModel = new Models_CategoryModel();
@@ -7,8 +7,7 @@ if (isset($_GET['action'])){
     $slug = $_GET['category'];
     $query=$CategoryModel->deleteCategoryBySlug($slug);
     if ($query){
-        echo '<script> alert("Category Deleted"); </script>';
-        echo "<script> window.location.replace('".ADMIN_URL."Pages/Category/List.php'); </script>";
+      echo '<script> alert("Category Deleted"); </script>';
     }
 } ?>
 <div class="page-wrapper">
@@ -83,10 +82,5 @@ if (isset($_GET['action'])){
             </div>
         </div>
     </div>
-    <script>
-    function delCategory(){
-        confirm("Do You want to delete ? ");
-    }
-</script>
 <?php getPartialView("Footer");?>
 <?php #include '../Partials/Footer.php'; ?>
