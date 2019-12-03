@@ -22,3 +22,7 @@ function slugify($text)
   }
   return $text;
 }
+
+include __DIR__. "/DataSeeder.php";
+$DataSeeder = new DataSeeder();
+$DataSeeder->SeedDatabase();
