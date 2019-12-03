@@ -2,8 +2,8 @@
 class Models_CategoryModel extends Models_AbstractModel
 {
 
-    public function addCategory($name,$decription){
-      
+    public function addCategory($name,$description){
+
       $slug = slugify($name);
       $sql = "INSERT into Category(Name,Slug,Description) VALUES('$name','$slug','$description')";
       $query = $this->getDb()->query($sql);
