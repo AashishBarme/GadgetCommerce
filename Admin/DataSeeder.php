@@ -2,10 +2,10 @@
 
 class DataSeeder{
 
-    $DbConnection = null
+    private $CategoryModel;
     public function __construct(){
 
-
+        $this->CategoryModel = new Models_CategoryModel();
     }
 
     public function  SeedDatabase(){
@@ -36,7 +36,7 @@ class DataSeeder{
        }
     }
     private function CreateCategory($category){
-
+        $categoryModel->CreateCategory();    
     }
     private function GetCategories(){
 
