@@ -3,7 +3,8 @@
 <?php
 $CategoryModel = new Models_CategoryModel();
 if (isset($_POST['submit'])){
-    $query = $CategoryModel->addCategory();
+
+    $query = $CategoryModel->addCategory($_POST['name'],$_POST['description']);
     if ($query = ' '){
       echo '<script> alert("Item Added"); </script>';
     } else {
