@@ -6,8 +6,9 @@ $categoryModel = new Models_CategoryModel();
 if (isset($_GET['action'])){
   $slug = $_GET['product'];
   $query=$productModel->deleteProductBySlug($slug);
-  if ($query){
+  if ($query = ' '){
     echo '<script> alert("Category Deleted"); </script>';
+    echo '<script>location.href="./?page=Products/List";</script>';
   }
 }
  ?>
@@ -69,8 +70,8 @@ if (isset($_GET['action'])){
                                                            foreach($categoryData as $key => $value){ echo $value->Name; }  ?>
                                                 </td>
                                                  <td>
-                                                  <a href="./Index.php?page=Products/View&product=<?php echo $row->ProductSlug; ?>"><input type="submit" class="btn btn-info btn-sm" value="Edit"></a>
-                                                  <a href="./Index.php?page=Products/List&product=<?php echo $row->ProductSlug; ?>&&action=del"><button onclick="delCategory()" class="btn btn-danger btn-sm">Delete</button></a>
+                                                  <a href="./?page=Products/View&product=<?php echo $row->ProductSlug; ?>"><input type="submit" class="btn btn-info btn-sm" value="Edit"></a>
+                                                  <a href="./?page=Products/List&product=<?php echo $row->ProductSlug; ?>&&action=del"><button onclick="delCategory()" class="btn btn-danger btn-sm">Delete</button></a>
                                                 </td>
                                             </tr>
                                           <?php } ?>

@@ -6,8 +6,9 @@ $CategoryModel = new Models_CategoryModel();
 if (isset($_GET['action'])){
     $slug = $_GET['category'];
     $query=$CategoryModel->deleteCategoryBySlug($slug);
-    if ($query){
+    if ($query = ' '){
       echo '<script> alert("Category Deleted"); </script>';
+      echo '<script>location.href="./?page=Category/List";</script>';
     }
 } ?>
 <div class="page-wrapper">
@@ -60,8 +61,8 @@ if (isset($_GET['action'])){
                                             <td><?php echo $row->Name; ?></td>
                                             <td><?php echo $row->Description; ?></td>
                                             <td>
-                                                <a href="./Index.php?page=Category/View&category=<?php echo $row->Slug; ?>"><input type="submit" class="btn btn-info btn-sm" value="Edit"></a>
-                                                <a href="./Index.php?page=Category/List&category=<?php echo $row->Slug; ?>&&action=del"><button onclick="delCategory()" class="btn btn-danger btn-sm">Delete</button></a>
+                                                <a href="./?page=Category/View&category=<?php echo $row->Slug; ?>"><input type="submit" class="btn btn-info btn-sm" value="Edit"></a>
+                                                <a href="./?page=Category/List&category=<?php echo $row->Slug; ?>&&action=del"><button onclick="delCategory()" class="btn btn-danger btn-sm">Delete</button></a>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>

@@ -12,6 +12,7 @@ if (isset($_POST['update'])){
     $query = $productModel->updateProductById($id,$name,$price,$sku,$catId);
       if ($query = " "){
         echo '<script> alert("Item Updated"); </script>';
+          echo '<script>location.href="./?page=Products/List";</script>';
       } else {
         echo '<script> alert("Something went Wrong"); </script>';
       }

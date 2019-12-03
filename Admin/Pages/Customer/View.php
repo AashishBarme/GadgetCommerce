@@ -1,23 +1,16 @@
-<?php getPartialView("Header"); ?>
-<?php getPartialView("Sidebar");?>
+<?php getPartialView('Header'); ?>
+<?php getPartialView('Sidebar'); ?>
 <?php
-$CategoryModel = new Models_CategoryModel();
+$CustomerModel = new Models_CustomerModel();
 if (isset($_POST['update'])){
-    $id = intval($_POST['id']);
-    $name = $_POST['name'];
-    $description = $_POST['description'];
-    $query = $CategoryModel->updateCategoryById($id,$name,$description);
-      if ($query = ' '){
-        echo '<script> alert("Item Updated"); </script>';
-        echo '<script>location.href="./?page=Category/List";</script>';
-      } else {
-        echo '<script> alert("Something went Wrong"); </script>';
-      }
-}
-?>
+  $customerid = $_GET['customerid'];
+  $query = $CustomerModel-> updateCustomerDataById($customerid);
+  if ($query = ' '){
+    echo '<script>alert("Customer Updated"); </script>';
+      echo '<script>location.href="./?page=Customer/List";</script>';
 
-
-
+  }
+}?>
 <!-- Page wrapper  -->
 <!-- ============================================================== -->
 <div class="page-wrapper">
@@ -27,24 +20,19 @@ if (isset($_POST['update'])){
     <div class="page-breadcrumb">
         <div class="row">
             <div class="col-12 d-flex no-block align-items-center">
-                <h4 class="page-title">View Category</h4>
+                <h4 class="page-title">View Customer's Detail</h4>
                 <div class="ml-auto text-right">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Library</li>
+                            <li class="breadcrumb-item active" aria-current="page">Detail</li>
                         </ol>
                     </nav>
                 </div>
             </div>
         </div>
     </div>
-    <!-- ============================================================== -->
-    <!-- End Bread crumb and right sidebar toggle -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- Container fluid  -->
-    <!-- ============================================================== -->
+
     <div class="container-fluid">
         <!-- ============================================================== -->
         <!-- Start Page Content -->
@@ -54,25 +42,36 @@ if (isset($_POST['update'])){
             <div class="col-md-12">
                 <div class="card">
                   <?php
-                  $slug = $_GET['category'];
-                  $categorySingleData = $CategoryModel->displayCategoryBySlug($slug);
-                  foreach($categorySingleData as $key=>$data)
+                  $customerid = $_GET['customerid'];
+                  $customerSingleData = $CustomerModel->displayCustomerDataById($customerid);
+                  foreach($customerSingleData as $key=>$data)
                   { ?>
                     <form class="form-horizontal" method="post">
                        <input type="hidden" name="id" value="<?php echo $data->Id; ?>">
                         <div class="card-body">
-                            <h4 class="card-title">Category Detail</h4>
+                            <h4 class="card-title">Customer Detail</h4>
                             <div class="form-group row">
                                 <label for="name" class="col-sm-3 text-right control-label col-form-label">First Name</label>
                                 <div class="col-sm-9">
-
-                                    <input type="text" name="name" class="form-control" value="<?php echo htmlentities($data->Name); ?>">
+                                    <input type="text" name="firstname" class="form-control" id="firstname" value="<?php echo $data->FirstName; ?>">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="description" class="col-sm-3 text-right control-label col-form-label">Description</label>
+                                <label for="name" class="col-sm-3 text-right control-label col-form-label">Last Name</label>
                                 <div class="col-sm-9">
-                                <textarea name="description" rows="5" cols="80"><?php echo htmlentities($data->Description); ?></textarea>
+                                    <input type="text" name="lastname" class="form-control" id="lastname"  value="<?php echo $data->LastName; ?>">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="name" class="col-sm-3 text-right control-label col-form-label">UserName</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="username" class="form-control" id="username" required  value="<?php echo $data->UserName; ?>">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="name" class="col-sm-3 text-right control-label col-form-label">Password</label>
+                                <div class="col-sm-9">
+                                    <input type="password" name="password" class="form-control" id="password" required  value="<?php echo $data->Password; ?>">
                                 </div>
                             </div>
                         </div>

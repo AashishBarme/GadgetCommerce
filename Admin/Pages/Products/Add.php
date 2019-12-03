@@ -4,10 +4,6 @@
 $productModel = new Models_ProductModel();
 $CategoryModel = new Models_CategoryModel();
 if (isset($_POST['submit'])){
-    $catId = $_POST['categoryId'];
-    $name = $_POST['name'];
-    $sku = $_POST['sku'];
-    $price = $_POST['price'];
     $imgfile=$_FILES["productImage"]["name"];
     // get the image extension
     $extension = substr($imgfile,strlen($imgfile)-4,strlen($imgfile));
@@ -22,7 +18,7 @@ if (isset($_POST['submit'])){
     {
     // Code for move image into directory
     move_uploaded_file($_FILES['productImage']['tmp_name'], ADMIN_PATH.'Uploads/'.$imgfile);
-      $query = $productModel->addProductData($catId,$name,$sku,$price,$imgfile);
+      $query = $productModel->addProductData($imgfile);
     }
     if ($query =' '){
       echo '<script> alert("Item Added"); </script>';
