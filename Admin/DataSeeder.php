@@ -9,7 +9,8 @@ class DataSeeder{
     }
 
     public function  SeedDatabase(){
-        $this->CreateCategoies();
+        
+        $this->CreateCategories();
         $Categories = $this->GetCategories();
         if(!$Categories)
         {
@@ -35,8 +36,8 @@ class DataSeeder{
            $this->CreateCategory($Category);
        }
     }
-    private function CreateCategory($category){
-        $categoryModel->CreateCategory();    
+    private function CreateCategory($Category){
+        $this->CategoryModel->addCategory($Category["Name"],$Category["Description"]);
     }
     private function GetCategories(){
 
@@ -46,7 +47,7 @@ class DataSeeder{
     {
         foreach($Categories as $Category)
         {
-            $this->CreateProduct($Category->Id);
+            $this->CreateProduct();
         }
     }
     private function CreateProduct($CategoryId){
