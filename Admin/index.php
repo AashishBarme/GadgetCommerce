@@ -1,8 +1,11 @@
 <?php
-include __DIR__."/Bootstrap.php";
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 
-function getPartialView($path){
+  include __DIR__."/Bootstrap.php";
+
+  function getPartialView($path){
     include  __DIR__."/Pages/Partials/$path.php";
-}
-$page = (isset($_GET["page"]) && !empty($_GET['page'])) ? $_GET['page']:"NotFound";
-include __DIR__."/Pages/$page.php";
+  }
+  $page = (isset($_GET["page"]) && !empty($_GET['page'])) ? $_GET['page']:"NotFound";
+ include __DIR__."/Pages/$page.php";

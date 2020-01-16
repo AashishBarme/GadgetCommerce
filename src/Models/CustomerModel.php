@@ -8,12 +8,7 @@ class Models_CustomerModel extends Models_AbstractModel
         return $this->getDb()->fetchAll("SELECT * FROM Customer");
       }
 
-      public function addCustomer(){
-        $firstname = $_POST['firstname'];
-        $lastname = $_POST['lastname'];
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-        echo $firstname.$lastname.$username.$password;
+      public function addCustomer($firstname,$lastname,$username,$password){
         $sql = "INSERT into Customer(FirstName,LastName,UserName,Password) VALUES('$firstname','$lastname','$username','$password')";
         return  $this->getDb()->query($sql);
       }

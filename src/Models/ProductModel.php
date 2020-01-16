@@ -4,14 +4,10 @@
  */
 class Models_ProductModel extends Models_AbstractModel
 {
-    public function addProductData($imgfile){
-      $catId = $_POST['categoryId'];
-      $name = $_POST['name'];
-      $sku = $_POST['sku'];
-      $price = $_POST['price'];
+    public function addProductData($catId,$name,$sku,$price){
       $slug = slugify($name);
-      $sql = "INSERT INTO Product(CategoryId,ProductName,ProductSlug,ProductSku,ProductPrice,ProductImage) VALUES('$catId','$name','$slug','$sku','$price','$imgfile')";
-      return $this->getDb()->query("$sql");
+      $sql = "INSERT INTO Product(CategoryId,ProductName,ProductSlug,ProductSku,ProductPrice) VALUES('$catId','$name','$slug','$sku','$price')";
+      return $this->getDb()->query($sql);
     }
 
     public function getProductList(){
