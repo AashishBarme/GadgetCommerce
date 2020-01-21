@@ -4,7 +4,7 @@
 $CustomerModel = new Models_CustomerModel();
 if (isset($_POST['update'])){
   $customerid = $_GET['customerid'];
-  $query = $CustomerModel-> updateCustomerDataById($customerid);
+  $query = $CustomerModel-> updateCustomerDataById($customerid,$_POST);
   if ($query = ' '){
     echo '<script>alert("Customer Updated"); </script>';
       echo '<script>location.href="./?page=Customer/List";</script>';

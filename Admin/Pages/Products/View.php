@@ -4,15 +4,13 @@
 $productModel = new Models_ProductModel();
 $categoryModel = new Models_CategoryModel();
 if (isset($_POST['update'])){
-    $id = intval($_POST['id']);
-    $name = $_POST['name'];
-    $sku = $_POST['sku'];
-    $price = $_POST['price'];
-    $catId = $_POST['categoryId'];
-    $query = $productModel->updateProductById($id,$name,$price,$sku,$catId);
+  $id = intval($_POST['id']);
+    $productimage = $_FILES["productImage"]["name"];
+    $productModel->uploadProductImage(); //uploading product image
+    $query = $productModel->updateProductById($id,$_POST['name'],$_POST['price'],$_POST['sku'],$_POST['categoryId'],$productimage);
       if ($query = " "){
         echo '<script> alert("Item Updated"); </script>';
-          echo '<script>location.href="./?page=Products/List";</script>';
+        echo '<script>location.href="./?page=Products/List";</script>';
       } else {
         echo '<script> alert("Something went Wrong"); </script>';
       }

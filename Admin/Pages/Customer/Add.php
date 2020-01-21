@@ -3,7 +3,7 @@
 <?php
 $CustomerModel = new Models_CustomerModel();
 if (isset($_POST['submit'])){
-$query = $CustomerModel->addCustomer();
+$query = $CustomerModel->addCustomer( $_POST['firstname'], $_POST['lastname'], $_POST['username'], $_POST['password']);
 if ($query =' '){
   echo '<script> alert("Customer Added"); </script>';
 } else {

@@ -13,24 +13,21 @@ class Models_CustomerModel extends Models_AbstractModel
         return  $this->getDb()->query($sql);
       }
 
-      public function deleteCustomerById($customerid){
-        $customerid = preg_replace("#[^0-9]#","",$customerid);
+      public function deleteCustomerById(int $customerid){
         $sql = "DELETE FROM Customer where Id='$customerid'";
         $query = $this->getDb()->query($sql);
       }
 
-      public function displayCustomerDataById($customerid){
-        $customerid = preg_replace("#[^0-9]#","",$customerid);
+      public function displayCustomerDataById(int $customerid){
         $sql = "SELECT FirstName,LastName,UserName,Password FROM Customer WHERE Id='$customerid'";
         return $this->getDb()->fetchAll($sql);
       }
 
-      public function updateCustomerDataById($customerid){
-        $customerid = preg_replace("#[^0-9]#","",$customerid);
-        $firstname = $_POST['firstname'];
-        $lastname = $_POST['lastname'];
-        $username = $_POST['username'];
-        $password = $_POST['password'];
+      public function updateCustomerDataById(int $customerid,array $data){
+        $firstname = $data['firstname'];
+        $lastname = $data['lastname'];
+        $username = $data['username'];
+        $password = $data['password'];
         $sql = "UPDATE Customer SET FirstName='$firstname',LastName='$lastname',UserName='$username',Password='$password' WHERE Id='$customerid'";
         $query = $this->getDb()->query($sql);
       }

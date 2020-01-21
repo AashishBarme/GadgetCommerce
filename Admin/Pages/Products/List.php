@@ -62,7 +62,7 @@ if (isset($_GET['action'])){
                                           <?php foreach ($ProductCollection as $key => $row){ ?>
                                             <tr>
                                                 <td><?php echo ++$key; ?></td>
-                                                <td><img width="60px" src="<?php echo ADMIN_URL."Uploads/".$row->ProductImage; ?>"></td>
+                                                <td><img width="60px" src="<?php echo UPLOAD_URL.$row->ProductImage; ?>"></td>
                                                 <td><?php echo $row->ProductName; ?></td>
                                                 <td><?php echo $row->ProductSku; ?></td>
                                                 <td><?php echo $row->ProductPrice; ?></td>
@@ -70,8 +70,8 @@ if (isset($_GET['action'])){
                                                            foreach($categoryData as $key => $value){ echo $value->Name; }  ?>
                                                 </td>
                                                  <td>
-                                                  <a href="./?page=Products/View&product=<?php echo $row->ProductSlug; ?>"><input type="submit" class="btn btn-info btn-sm" value="Edit"></a>
-                                                  <a href="./?page=Products/List&product=<?php echo $row->ProductSlug; ?>&&action=del"><button onclick="delCategory()" class="btn btn-danger btn-sm">Delete</button></a>
+                                                  <a href="./?page=Products/View&product=<?php echo $row->Id; ?>"><input type="submit" class="btn btn-info btn-sm" value="Edit"></a>
+                                                  <a href="./?page=Products/List&product=<?php echo $row->Id; ?>&&action=del"><button onclick="delCategory()" class="btn btn-danger btn-sm">Delete</button></a>
                                                 </td>
                                             </tr>
                                           <?php } ?>

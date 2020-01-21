@@ -14,19 +14,13 @@ class DataSeeder{
 
     public function SeedDatabase(){
 
-        //$this->CreateCategories();
-        //$this->CreateCustomers();
+      //  $this->CreateCategories();
+      //  $this->CreateCustomers();
         $Categories = $this->GetCategories();
         if($Categories)
         {
-                 $this->CreateProducts($Categories);
+                //$this->CreateProducts($Categories);
         }
-        //product
-
-        // create CreateProduct
-        // GetAllProducts
-        // Create Customers
-        // Create Orders
     }
 
     private function CreateCategories(){

@@ -3,7 +3,6 @@
 <?php
 $CategoryModel = new Models_CategoryModel();
 if (isset($_POST['submit'])){
-
     $query = $CategoryModel->addCategory($_POST['name'],$_POST['description']);
     if ($query = ' '){
       echo '<script> alert("Item Added"); </script>';
@@ -54,7 +53,7 @@ if (isset($_POST['submit'])){
                         <div class="card-body">
                             <h4 class="card-title">Category Detail</h4>
                             <div class="form-group row">
-                                <label for="name" class="col-sm-3 text-right control-label col-form-label">First Name</label>
+                                <label for="name" class="col-sm-3 text-right control-label col-form-label">Name</label>
                                 <div class="col-sm-9">
                                     <input type="text" name="name" class="form-control" id="name">
                                 </div>

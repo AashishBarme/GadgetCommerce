@@ -1,20 +1,21 @@
 <?php
-
-class Models_AbstractModel{
-    private $dbConnection;
-    private $database;
+use src\Interfaces\IAbstract;
+class Models_AbstractModel 
+{
+    private $DbConnection;
+    private $Database;
     public function __construct(){
-        $this->database = new Library_Database_Db();
+        $this->Database = new Library_Database_Db();
     }
     public function getDb(){
-        return $this->database;
+        return $this->Database;
     }
     public function getConnection(){
-        if(!$this->dbConnection)
+        if(!$this->DbConnection)
         {
-            $this->dbConnection = $this->database->getConnection();
+            $this->DbConnection = $this->Database->getConnection();
         }
-        return $this->dbConnection;
+        return $this->DbConnection;
     }
 
 }
