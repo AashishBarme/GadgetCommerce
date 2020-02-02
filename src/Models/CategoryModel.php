@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
-use src\Interfaces\IAbstract;
+use src\Interfaces\ICategory;
 // list = multiple
 // get = single
-class Models_CategoryModel extends Models_AbstractModel implements IAbstract
+class Models_CategoryModel extends Models_AbstractModel implements ICategory
 {
     private $SlugHelper;
 
@@ -12,8 +12,9 @@ class Models_CategoryModel extends Models_AbstractModel implements IAbstract
     Public function Update(){}
 
     public function addCategory($name,$description){
+      $hs = new Helpers_StringHelper();
+      
       //slug should be unique .. check if the slug exists before adding new one
-
       $slug = $this->GetSlugHelper()->slugify($name);
       $sql = "INSERT into Category(Name,Slug,Description) VALUES('$name','$slug','$description')";
       $query = $this->getDb()->query($sql);
@@ -33,7 +34,7 @@ class Models_CategoryModel extends Models_AbstractModel implements IAbstract
     {
         $catid = $this->getDb()->fetchAll("SELECT Id FROM Category where Slug = '$catname'");
         $id = $catid[0]->Id;
-        return $this->getDb()->fetchAll("SELECT ProductSlug,ProductName,ProductPrice,ProductImage FROM Product WHERE CategoryId='$id'");
+        return $this->getDb()->fetchAll("SELECT Id,ProductSlug,ProductName,ProductPrice,ProductImage FROM Product WHERE CategoryId='$id'");
     }
 
     public function getCategoryDataById($id){
@@ -49,7 +50,6 @@ class Models_CategoryModel extends Models_AbstractModel implements IAbstract
     public function deleteCategoryBySlug(string $slug)
     {
         // check if id of this slug exists and delete with id.
-
         $sql = "DELETE FROM Category WHERE Slug='$slug'";
         //echo $sql;
         $query = $this->getDb()->query($sql);

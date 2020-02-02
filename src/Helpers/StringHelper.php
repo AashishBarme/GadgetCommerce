@@ -28,4 +28,10 @@ class Helpers_StringHelper
     return preg_replace("#[^a-zA-Z0-9-]#","",$slug);
   }
 
+  public function CheckSlugDuplication(string $slug, string $tablename):string
+  {
+    $sql  = 'SELECT 1 FROM $tablename WHERE slug =$slug LIMIT 1';
+    echo $sql;
+  }
+
 }

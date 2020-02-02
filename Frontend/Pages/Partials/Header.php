@@ -1,4 +1,5 @@
-<?php $vm = new ViewModels_Header();?>
+<?php $vm = new ViewModels_Header();
+ session_start();?>
 <!doctype html>
 <html lang="en">
 

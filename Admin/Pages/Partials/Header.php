@@ -44,7 +44,7 @@
                      <!-- ============================================================== -->
                      <!-- Logo -->
                      <!-- ============================================================== -->
-                     <a class="navbar-brand" href="index.html">
+                     <a class="navbar-brand" href="<?=ADMIN_URL; ?>">
                          <!-- Logo icon -->
                          <b class="logo-icon p-l-10">
                              <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
@@ -56,8 +56,8 @@
                           <!-- Logo text -->
                          <span class="logo-text">
                               <!-- dark Logo text -->
+                             
                               <img src="<?php echo ADMIN_URL; ?>Assets/images/logo-text.png" alt="homepage" class="light-logo" />
-
                          </span>
                          <!-- Logo icon -->
                          <!-- <b class="logo-icon"> -->

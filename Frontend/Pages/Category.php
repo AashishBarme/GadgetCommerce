@@ -59,7 +59,7 @@
                   <a href="#">
                     <i class="lnr lnr-heart"></i>
                   </a>
-                  <a href="#">
+                  <a href="<?=BASE_URL?>?page=cart&product=<?=$item->Id;?>">
                     <i class="lnr lnr-cart"></i>
                   </a>
                 </div>
