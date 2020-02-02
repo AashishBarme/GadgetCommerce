@@ -1,0 +1,10 @@
+{
+    "name": "aashishbarme/gadget-commerce",
+    "description": "ecommerce for learning solid principles",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "GadgetCommerce\\Core\\": "Framework"
+        }
+    }
+}
