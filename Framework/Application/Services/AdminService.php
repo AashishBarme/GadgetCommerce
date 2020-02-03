@@ -2,7 +2,7 @@
 
 namespace GadgetCommerce\Core\Application\Services;
 use GadgetCommerce\Core\Application\Entity\Admin;
-use GadgetCommerce\Core\Application\interfaces\Services\IAdminService;
+use GadgetCommerce\Core\Application\Interfaces\Services\IAdminService;
 use GadgetCommerce\Core\Application\Interfaces\Repository\IAdminRepository;
 use GadgetCommerce\Core\Application\Exceptions\ServiceException;
 class AdminService implements IAdminService
