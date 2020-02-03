@@ -23,7 +23,7 @@ class AdminService implements IAdminService
     public function Create(Admin $entity) : Admin 
     {
         //TODO: if not alphanumeric throw service exception
-
+        
         return $this->GetRepository()->Create($entity) ;
     }
     public function Update(Admin $entity) : Admin 
