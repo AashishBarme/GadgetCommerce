@@ -7,7 +7,7 @@ use GadgetCommerce\Core\Application\Interfaces\Repository\IAdminRepository;
 use GadgetCommerce\Core\Application\Exceptions\ServiceException;
 class AdminService implements IAdminService
 {
-    private IAdminRepository $Repository;
+    private $Repository;
     public function __construct(IAdminRepository $repo)
     {
         $this->Repository = $repo;

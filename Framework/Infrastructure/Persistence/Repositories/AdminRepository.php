@@ -10,14 +10,13 @@ class AdminRepository implements IAdminRepository
     private $lastId=0;
     private $Db;
     private $Collection;
-    public function __construct($db= null)
+    public function __construct($db = null)
     {
         $this->Db = $db;
         $this->Collection = [];
     }
     public function Create(Admin $entity) : Admin 
-    {
-        
+    {       
         $entity->Id = ++$this->lastId;
         $this->Collection[$entity->Id] = $entity;
         return  $entity;

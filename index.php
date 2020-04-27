@@ -1,4 +1,9 @@
 <?php 
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 include __DIR__."/vendor/autoload.php";
 
 /**
@@ -8,17 +13,22 @@ include __DIR__."/vendor/autoload.php";
  * 4. unit testing can be done in isolation
  */
 
-$adminRepo = new \GadgetCommerce\Core\Infrastructure\Persistence\Repositories\AdminRepository();
-$adminService = new \GadgetCommerce\Core\Application\Services\AdminService($adminRepo);
+$cartRepo = new \GadgetCommerce\Core\Infrastructure\Persistence\Repositories\CartRepository();
+$cartService = new \GadgetCommerce\Core\Application\Services\CartService($cartRepo);
 
-for($i=0; $i<10; $i++)
+for($i=0; $i<3; $i++)
 {
 
-    $entity = new \GadgetCommerce\Core\Application\Entity\Admin;
-    $entity->Username = "abcd GHWPJDCSAKLn '" . $i;
+    $entity = new \GadgetCommerce\Core\Application\Entity\Cart;
+    $entity->CartId = $i;
+    $entity->ProductId = $i;
+    $entity->Quantity = $i;
+    $entity->CustomerId = $i;
     
-    $entity = $adminService->Create($entity);
+    $entity = $cartService->Create($entity);
     
+    echo '<pre>';
     var_dump($entity);
+    echo '</pre>';
 }
 
