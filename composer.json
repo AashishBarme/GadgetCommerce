@@ -6,10 +6,5 @@
         "psr-4": {
             "GadgetCommerce\\Core\\": "Framework"
         }
-    },
-    "config": {
-        "platform": {
-            "php": "7.4.0"
-        }
     }
 }

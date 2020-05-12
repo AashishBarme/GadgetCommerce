@@ -13,22 +13,37 @@ include __DIR__."/vendor/autoload.php";
  * 4. unit testing can be done in isolation
  */
 
-$cartRepo = new \GadgetCommerce\Core\Infrastructure\Persistence\Repositories\CartRepository();
-$cartService = new \GadgetCommerce\Core\Application\Services\CartService($cartRepo);
 
-for($i=0; $i<3; $i++)
+$pdo = PdoConnection();
+$catRepo = new \GadgetCommerce\Core\Infrastructure\Persistence\Repositories\CategoryRepository($pdo);
+$catService = new \GadgetCommerce\Core\Application\Services\CategoryService($catRepo);
+
+$entity = new \GadgetCommerce\Core\Application\Entity\Category;
+$entity->Name = "Books";
+$entity->Slug = "books";
+$entity->Description = "Description";
+
+$create = $catService->Create($entity);
+
+var_dump($create);
+
+
+function PdoConnection()
 {
+    $servername = "localhost";
+    $username = "admin";
+    $password = "65403";
 
-    $entity = new \GadgetCommerce\Core\Application\Entity\Cart;
-    $entity->CartId = $i;
-    $entity->ProductId = $i;
-    $entity->Quantity = $i;
-    $entity->CustomerId = $i;
-    
-    $entity = $cartService->Create($entity);
-    
-    echo '<pre>';
-    var_dump($entity);
-    echo '</pre>';
+    try {
+    $conn = new PDO("mysql:host=$servername;dbname=GadgetCommerce", $username, $password);
+    // set the PDO error mode to exception
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    // echo "Connected successfully";
+    return $conn;
+    } catch(PDOException $e) {
+        throw new PDOException($e->getMessage());
+    // echo "Connection failed: " . $e->getMessage();
+    }
 }
+
 

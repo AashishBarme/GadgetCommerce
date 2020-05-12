@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 namespace GadgetCommerce\Core\Application\Interfaces\Repository;
-use GadgetCommerce\Core\Apllication\Entity\Category;
+use GadgetCommerce\Core\Application\Entity\Category;
 
 interface ICategoryRepository{
     public function Create(Category $entity): Category;
