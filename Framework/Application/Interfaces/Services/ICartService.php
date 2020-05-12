@@ -5,8 +5,7 @@ use GadgetCommerce\Core\Application\Entity\Cart;
 use GadgetCommerce\Core\Application\Interfaces\Repository\ICartRepository;
 
 interface ICartService{
-    public function SetRepository(ICartRepository $repo): void;
-    public function GetRepository(): ICartRepository;
+
     public function Create(Cart $entity): Cart;
     public function Update(Cart $entity): Cart;
     public function Delete(Cart $entity): int;

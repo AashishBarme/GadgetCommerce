@@ -7,8 +7,6 @@ use GadgetCommerce\Core\Application\Entity\Customer;
 
 interface ICustomerService{
 
-    public function SetRepository(ICustomerRepository $repo): void;
-    public function GetRepository():ICustomerRepository; 
     public function Create(Customer $enity): Customer;
     public function Update(Customer $entity): Customer;
     public function Delete(Customer $entity): int;

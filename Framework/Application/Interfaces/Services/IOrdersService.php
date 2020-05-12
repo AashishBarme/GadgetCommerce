@@ -4,8 +4,7 @@ namespace GadgetCommerce\Core\Application\Interfaces\Services;
 use GadgetCommerce\Core\Application\Entity\Orders;
 use GadgetCommerce\Core\Application\Interfaces\Repository\IOrderRepository;
 interface IOrdersService {
-    public function SetRepository(IOrderRepository $repo): void;
-    public function GetRepository(): IOrderRepository;
+
     public function Create(Orders $entity): Orders;
     public function Update(Orders $entity): Orders;
     public function Delete(Orders $entity): int;

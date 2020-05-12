@@ -5,8 +5,7 @@ use GadgetCommerce\Core\Application\Entity\Admin;
 use GadgetCommerce\Core\Application\Interfaces\Repository\IAdminRepository;
 interface IAdminService
 {
-    public function SetRepository(IAdminRepository $repo):void;
-    public function GetRepository():IAdminRepository;
+
     public function Create(Admin $entity) : Admin ;
     public function Update(Admin $entity) : Admin ;
     public function Delete(Admin $entity) : int ;

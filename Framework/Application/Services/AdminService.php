@@ -8,23 +8,19 @@ use GadgetCommerce\Core\Application\Exceptions\ServiceException;
 class AdminService implements IAdminService
 {
     private $Repository;
-    public function __construct(IAdminRepository $repo)
+    public function __construct(IAdminRepository $repository = null)
     {
-        $this->Repository = $repo;
+        if($repository !== null )
+        {
+            $this->Repository = $repository;
+        }
     }
-    public function SetRepository(IAdminRepository $repo):void
-    {   
-        $this->Repository = $repo;
-    }
-    public function GetRepository():IAdminRepository
-    {
-        return $this->Repository;
-    }
+
     public function Create(Admin $entity) : Admin 
     {
         //TODO: if not alphanumeric throw service exception
         
-        return $this->GetRepository()->Create($entity) ;
+        return $this->Repository->Create($entity) ;
     }
     public function Update(Admin $entity) : Admin 
     {

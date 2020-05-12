@@ -7,8 +7,6 @@ use GadgetCommerce\Core\Application\Entity\Product;
 
 interface IProductService{
 
-    public function SetRepository(IProductRepository $repo):void;
-    public function GetRepository():IProductRepository;
     public function Create(Product $entity): Product;
     public function Update(Product $entity): Product;
     public function Delete(Product $entity): int;

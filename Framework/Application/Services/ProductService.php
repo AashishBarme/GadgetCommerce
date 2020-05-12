@@ -10,17 +10,13 @@ use GadgetCommerce\Core\Application\Interfaces\Services\IProductService;
 
 class ProductService implements IProductService{
     private $Repository;
-    public function __construct(IProductRepository $repo){
-        $this->Repository = $repo;
+    public function __construct(IProductRepository $repository = null){
+        if($repository !== null)
+        {
+            $this->Repository = $repository;
+        }
     }
-    public function SetRepository(IProductRepository $repo):void
-    {
-        $this->Repository = $repo;
-    }
-    public function GetRepository():IProductRepository
-    {   
-        return $this->Repository;
-    }
+
     public function Create(Product $entity): Product
     {
         return $this->Repository->Create($entity);

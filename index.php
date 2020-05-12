@@ -19,8 +19,8 @@ $catRepo = new \GadgetCommerce\Core\Infrastructure\Persistence\Repositories\Cate
 $catService = new \GadgetCommerce\Core\Application\Services\CategoryService($catRepo);
 
 $entity = new \GadgetCommerce\Core\Application\Entity\Category;
-$entity->Name = "Books";
-$entity->Slug = "books";
+$entity->Name = "Test Books";
+$entity->Slug = "test-books";
 $entity->Description = "Description";
 
 $create = $catService->Create($entity);

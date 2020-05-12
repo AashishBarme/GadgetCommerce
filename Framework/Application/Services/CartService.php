@@ -10,19 +10,14 @@ use GadgetCommerce\core\Application\Exceptions\ServiceException;
 class CartService implements ICartService{
     private $Repository;
 
-    public function __construct(ICartRepository $repo)
+    public function __construct(ICartRepository $repository = null)
     {
-        $this->Repository = $repo;
+        if($repository !== null)
+        {
+        $this->Repository = $repository;
+        }
     }
 
-    public function SetRepository(ICartRepository $repo): void
-    {
-        $this->Repository = $repo;
-    }
-    public function GetRepository(): ICartRepository
-    {
-        return $this->Repository;
-    }
     public function Create(Cart $entity): Cart
     {
         return $this->Repository->Create($entity);

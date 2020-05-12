@@ -13,23 +13,13 @@ class CategoryService implements ICategoryService{
     {
         if($repository !== null)
         {
-            $this->SetRepository($repository);    
+            $this->Repository = $repository;   
         }
-    }
-
-    public function SetRepository(ICategoryRepository $repository):void
-    {   
-        $this->Repository = $repository;
-    }
-    
-    public function GetRepository():ICategoryRepository
-    {
-        return $this->Repository;
     }
 
     public function Create(Category $entity): Category
     {
-       return $this->GetRepository()->Create($entity);
+       return $this->Repository->Create($entity);
     }
     
     public function Update(Category $entity): Category

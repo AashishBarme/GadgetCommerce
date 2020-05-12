@@ -7,8 +7,6 @@ use GadgetCommerce\Core\Application\Interfaces\Repository\ICategoryRepository;
 
 interface ICategoryService{
 
-    public function SetRepository(ICategoryRepository $repo):void;
-    public function GetRepository():ICategoryRepository;
     public function Create(Category $entity): Category;
     public function Update(Category $entity): Category;
     public function Delete(Category $entity): int;
