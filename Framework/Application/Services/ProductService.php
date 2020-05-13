@@ -21,20 +21,24 @@ class ProductService implements IProductService{
     {
         return $this->Repository->Create($entity);
     }
+
     public function Update(Product $entity): Product
     {
-        return $entity;
+       return $this->Repository->Update($entity);
     }
+
     public function Delete(Product $entity): int
     {
-        return 0;
+        return $this->Repository->Delete($entity);
     }
+
     public function List(): array
     {
-        return [];
+        return $this->Repository->List();
     }
-    public function Get(string $slug): Product
+    
+    public function Get(int $id): Product
     {
-        return new Product();
+        return $this->Repository->Get($id);
     }
 }

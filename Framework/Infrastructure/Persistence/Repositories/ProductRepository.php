@@ -7,56 +7,71 @@ use GadgetCommerce\Core\Application\Interfaces\Repository\IProductRepository;
 use GadgetCommerce\Core\Application\Entity\Product;
 
 class ProductRepository implements IProductRepository{    
-    private $lastId=0;
     private $Db;
-    private $Collection;
 
-    public function __construct($db = null)
+    public function __construct($db)
     {
         $this->Db = $db;
-        $this->Collection = [];
     }
 
     public function Create(Product $entity): Product
     {
-        $entity->Id = ++$this->lastId;
-        $this->Collection[$entity->Id] = $entity;
+        $sql = "INSERT INTO Product(`CategoryId`,`ProductName`,`ProductSlug`,`ProductSku`,`ProductPrice`,`ProductImage`) VALUES (:CategoryId, :ProductName, :ProductSlug, :ProductSku, :ProductPrice, :ProductImage)";
+        $stmt = $this->Db->prepare($sql);
+        $stmt->execute(['CategoryId'=>$entity->CategoryId, 
+                        'ProductName'=>$entity->ProductName, 
+                        'ProductSlug'=>$entity->ProductSlug, 
+                        'ProductSku' => $entity->ProductSku,
+                        'ProductPrice'=>$entity->ProductPrice, 
+                        'ProductImage'=>$entity->ProductImage]);
+        $entity->Id = intval($this->Db->lastInsertId());   
+                       
         return $entity;
     }
+
     public function Update(Product $entity): Product
     {
-        foreach($this->Collection as $item)
-        {
-            if($item->Id == $entity->Id)
-            {
-                $item->CategoryId = $entity->CategoryId;
-                $item->ProductName = $entity->ProductName;
-                $item->ProductSlug = $entity->ProductSlug;
-                $item->ProductSku = $entity->ProductSku;
-                $item->ProductPrice = $entity->ProductPrice;
-                $item->ProductImage = $entity->ProductImage; 
-            }
-        } 
+        $sql = "UPDATE Product SET CategoryId=:CategoryId,ProductName=:ProductName,ProductSlug=:ProductSlug,ProductSku=:ProductSku,ProductPrice=:ProductPrice,ProductImage=:ProductImage WHERE Id=:Id";
+        $stmt = $this->Db->prepare($sql);
+        $stmt->execute(["Id" => $entity->Id,
+                        "CategoryId"=>$entity->CategoryId,
+                        "ProductName"=>$entity->ProductName,
+                        "ProductSlug"=>$entity->ProductSlug,
+                        'ProductSku' => $entity->ProductSku,
+                        "ProductPrice"=>$entity->ProductPrice,
+                        "ProductImage"=>$entity->ProductImage]);
+        return $entity;                
     }
+
     public function Delete(Product $entity): int
     {
-        unset($this->Collection[$entity->Id]);
-        return 0;
+        $sql = "DELETE FROM Product WHERE Id=:Id";
+        $stmt = $this->Db->prepare($sql);
+        $stmt->execute(["Id"=>$entity->Id]); 
+        return 1;
     }
+
     public function List(): array
     {
-        return $this->Collection;
+        $entity = new Product();
+
+        $sql = "SELECT * FROM Product";
+        $stmt = $this->Db->prepare($sql);
+        $stmt->execute();
+        $stmt->SetFetchMode(\PDO::FETCH_INTO,$entity);
+        return $stmt->fetchAll();    
     }
-    public function Get(string $slug): Product
+
+    public function Get(int $id): Product
     {
-        $entity = null;
-        foreach($this->Collection as $item)
-        {
-            if($item->Id == $id)
-            {
-                return $item;
-            }
-        }
+        $entity = new Product();
+
+        $sql = "SELECT * FROM Product WHERE Id = :Id";
+        $stmt = $this->Db->prepare($sql);
+        $stmt->execute(["Id"=>$id]);
+        $stmt->SetFetchMode(\PDO::FETCH_INTO,$entity);
+        $stmt->fetch();
+        
         return $entity;
     }
 }

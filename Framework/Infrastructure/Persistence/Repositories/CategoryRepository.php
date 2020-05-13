@@ -17,7 +17,7 @@ class CategoryRepository implements ICategoryRepository{
     {
         $stmt = $this->Db->prepare('INSERT INTO Category(`Name`,`Slug`,`Description`) Values (:Name, :Slug, :Description)');
         $stmt->execute(['Name' => $entity->Name, 'Slug' => $entity->Slug,'Description'=> $entity->Description]);
-        $entity->Id = $this->Db->lastInsertId();
+        $entity->Id = intval($this->Db->lastInsertId());
         return $entity;
     }
 
@@ -41,7 +41,7 @@ class CategoryRepository implements ICategoryRepository{
         $stmt = $this->Db->prepare('SELECT * FROM Category');
         $stmt->execute();
         $stmt->setFetchMode(\PDO::FETCH_INTO, $entity);
-        return $stmt->fetchAll(\PDO::FETCH_OBJ);
+        return $stmt->fetchAll();
     }
 
     public function Get(int $id): Category
@@ -51,11 +51,8 @@ class CategoryRepository implements ICategoryRepository{
         $sql = 'SELECT * FROM Category WHERE Id=:Id';
         $stmt = $this->Db->prepare($sql);
         $stmt->execute(['Id'=>$id]);
-        $result = $stmt->fetch(\PDO::FETCH_OBJ);
-
-        $entity->Name = $result->Name;
-        $entity->Slug = $result->Slug;
-        $entity->Description = $result->Description;
+        $stmt->setFetchMode(\PDO::FETCH_INTO, $entity);
+        $stmt->fetch();
 
         return $entity;
     }

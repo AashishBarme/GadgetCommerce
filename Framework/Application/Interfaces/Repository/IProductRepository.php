@@ -10,6 +10,6 @@ interface IProductRepository{
     public function Update(Product $entity): Product;
     public function Delete(Product $entity): int;
     public function List(): array;
-    public function Get(string $slug): Product;
+    public function Get(int $id): Product;
 
 }

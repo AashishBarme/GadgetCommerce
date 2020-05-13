@@ -15,15 +15,18 @@ include __DIR__."/vendor/autoload.php";
 
 
 $pdo = PdoConnection();
-$catRepo = new \GadgetCommerce\Core\Infrastructure\Persistence\Repositories\CategoryRepository($pdo);
-$catService = new \GadgetCommerce\Core\Application\Services\CategoryService($catRepo);
+$Repo = new \GadgetCommerce\Core\Infrastructure\Persistence\Repositories\ProductRepository($pdo);
+$Service = new \GadgetCommerce\Core\Application\Services\ProductService($Repo);
 
-$entity = new \GadgetCommerce\Core\Application\Entity\Category;
-$entity->Name = "Test";
-$entity->Slug = "test-books";
-$entity->Description = "Description";
-$entity->Id = 3;
-$operation = $catService->List();
+$entity = new \GadgetCommerce\Core\Application\Entity\Product;
+$entity->CategoryId = 2;
+$entity->ProductName = "Beta Test Product";
+$entity->ProductSlug = "test-product";
+$entity->ProductPrice = "500";
+$entity->ProductSku = "BTEST12";
+$entity->ProductImage = "BTest.jpg";
+$entity->Id = 2;
+$operation = $Service->Get($entity->Id);
 
 var_dump($operation);
 
