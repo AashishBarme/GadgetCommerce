@@ -24,28 +24,22 @@ class CategoryService implements ICategoryService{
     
     public function Update(Category $entity): Category
     {
-        return $entity;
+        return $this->Repository->Update($entity);
     }
     
     public function Delete(Category $entity): int
     {
-        return 0;
+        return $this->Repository->Delete($entity);
     }
     
     public function List(): array
     {
-        return [];
+        return $this->Repository->List();
     }
 
-    public function Get(string $slug): Category
+    public function Get(int $id): Category
     {
-        $entity = new Category;
-        return $entity;
+        return $this->Repository->Get($id);
     }
 
-    public function GetNameSlug(int $id): Category
-    {
-        $entity = new Category;
-        return $entity;
-    }
 }

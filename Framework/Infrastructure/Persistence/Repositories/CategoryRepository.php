@@ -23,33 +23,41 @@ class CategoryRepository implements ICategoryRepository{
 
     public function Update(Category $entity): Category
     {
+        $sql = 'UPDATE Category SET Name = :Name,Description = :Description WHERE Id = :Id';
+        $stmt = $this->Db->prepare($sql);
+        $stmt->execute(['Name' => $entity->Name , 'Description' =>$entity->Description , 'Id'=>$entity->Id]);
         return $entity;
     }
     public function Delete(Category $entity): int
     {
-        return 0;
+        $sql = 'DELETE FROM Category WHERE Id= :Id';
+        $stmt = $this->Db->prepare($sql);
+        return $stmt->execute(['Id'=>$entity->Id]);
     }
+
     public function List(): array
     {
-         // $result->setFetchMode(\PDO::FETCH_INTO, $entity)
-        // $user = $stmt->fetch();
-        return [];
+        $entity = new Category();
+        $stmt = $this->Db->prepare('SELECT * FROM Category');
+        $stmt->execute();
+        $stmt->setFetchMode(\PDO::FETCH_INTO, $entity);
+        return $stmt->fetchAll(\PDO::FETCH_OBJ);
     }
 
-    public function Get(string $slug): Category
+    public function Get(int $id): Category
     {
         $entity = new Category();
-        return $entity;
-    }
-    public function GetNameSlug(int $id): Category
-    {
-        $entity = new Category();
-        return $entity;
-    }
 
-    public function testConnection()
-    {
-        var_dump($this->Db);
+        $sql = 'SELECT * FROM Category WHERE Id=:Id';
+        $stmt = $this->Db->prepare($sql);
+        $stmt->execute(['Id'=>$id]);
+        $result = $stmt->fetch(\PDO::FETCH_OBJ);
+
+        $entity->Name = $result->Name;
+        $entity->Slug = $result->Slug;
+        $entity->Description = $result->Description;
+
+        return $entity;
     }
 
 }

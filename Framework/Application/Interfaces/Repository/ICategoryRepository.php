@@ -7,7 +7,6 @@ interface ICategoryRepository{
     public function Update(Category $entity): Category;
     public function Delete(Category $entity): int;
     public function List(): array;
-    public function Get(string $slug): Category;
-    public function GetNameSlug(int $id): Category;
+    public function Get(int $id): Category;
     
 }

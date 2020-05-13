@@ -19,13 +19,13 @@ $catRepo = new \GadgetCommerce\Core\Infrastructure\Persistence\Repositories\Cate
 $catService = new \GadgetCommerce\Core\Application\Services\CategoryService($catRepo);
 
 $entity = new \GadgetCommerce\Core\Application\Entity\Category;
-$entity->Name = "Test Books";
+$entity->Name = "Test";
 $entity->Slug = "test-books";
 $entity->Description = "Description";
+$entity->Id = 3;
+$operation = $catService->List();
 
-$create = $catService->Create($entity);
-
-var_dump($create);
+var_dump($operation);
 
 
 function PdoConnection()
