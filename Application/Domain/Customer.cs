@@ -8,6 +8,6 @@ namespace GadgetCommerce_v2.Application.Domain
        public string UserName {get;  set;}
        public string Password {get;  set;}
        public string LastLogin {get;  set;}
-       public float LastLoginIp {get;  set;}
+       public string LastLoginIp {get;  set;}
     }
 }
