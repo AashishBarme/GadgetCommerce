@@ -1,0 +1,45 @@
+@model Customer
+
+<div class="row orderForm">
+    <form asp-controller="Customer" asp-action="Create" method="post"  role="form">
+        @Html.HiddenFor(m => Model.Id)
+        <h3 class="col-md-offset-2">Create new Customer</h3>
+        <div class="form-group">
+            <label asp-for="FirstName" class="col-md-2 control-label"></label>
+            <div class="col-md-6">
+                <input asp-for="FirstName" class="form-control" placeholder="Enter Customer FirstName" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="LastName" class="col-md-2 control-label"></label>
+            <div class="col-md-6">
+                <input asp-for="LastName" class="form-control" placeholder="Enter Customer LastName" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+        </div>
+
+         <div class="form-group">
+            <label asp-for="UserName" class="col-md-2 control-label"></label>
+            <div class="col-md-6">
+                <input asp-for="UserName" class="form-control" placeholder="Enter Customer UserName" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+        </div>
+         <div class="form-group">
+            <label asp-for="Password" class="col-md-2 control-label"></label>
+            <div class="col-md-6">
+                <input asp-for="Password" class="form-control" placeholder="Enter Customer Password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+        </div>    
+
+        <div class="form-group">
+            <div class="btn-group col-md-offset-2 col-md-6">
+                <input class="btn btn-default" type="submit" value="Return" asp-controller="Customer" asp-action="List" />
+                <input class="btn btn-success" type="submit" value="Update" />
+            </div>
+        </div>
+    </form>
+</div>
