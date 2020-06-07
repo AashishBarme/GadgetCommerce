@@ -1,0 +1,77 @@
+{
+  "format": 1,
+  "restore": {
+    "/var/www/html/GadgetCommerce-v2/GadgetCommerce-v2.csproj": {}
+  },
+  "projects": {
+    "/var/www/html/GadgetCommerce-v2/GadgetCommerce-v2.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/var/www/html/GadgetCommerce-v2/GadgetCommerce-v2.csproj",
+        "projectName": "GadgetCommerce-v2",
+        "projectPath": "/var/www/html/GadgetCommerce-v2/GadgetCommerce-v2.csproj",
+        "packagesPath": "/home/barme/.nuget/packages/",
+        "outputPath": "/var/www/html/GadgetCommerce-v2/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/barme/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "EntityFramework": {
+              "target": "Package",
+              "version": "[6.4.4, )"
+            },
+            "Pomelo.EntityFrameworkCore.MySql": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[3.1.2, 3.1.2]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.300/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
