@@ -16,10 +16,5 @@ namespace GadgetCommerce_v2.Application.Services
 
         }
 
-        public IEnumerable<Category> List()
-        {
-            return _context.Set<Category>();
-        }
-
     }
 }

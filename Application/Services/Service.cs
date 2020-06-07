@@ -17,6 +17,7 @@ namespace GadgetCommerce_v2.Application.Services
         }
 
         protected void Save() => _context.SaveChanges();
+        
         public void Create(T entity)
         {
             _context.Add(entity);
@@ -38,6 +39,11 @@ namespace GadgetCommerce_v2.Application.Services
         public T GetById(int id)
         {
             return _context.Set<T>().Find(id);
+        }
+
+        public IEnumerable<T> List()
+        {
+            return _context.Set<T>();
         }
     }
 }

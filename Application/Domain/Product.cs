@@ -9,7 +9,7 @@ namespace GadgetCommerce_v2.Application.Domain
         public string ProductName {get;  set;}
         public string ProductSlug {get;  set;}
         public string ProductSku {get;  set;}
-        public float ProductPrice {get;  set;}
+        public double ProductPrice {get;  set;}
         public string ProductImage {get;  set;}
     }
 }
