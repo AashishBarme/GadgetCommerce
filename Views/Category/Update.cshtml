@@ -1,0 +1,28 @@
+@model Category
+
+<div class="row orderForm">
+    <form asp-controller="Category" asp-action="Update" method="post"  role="form">
+        <h3 class="col-md-offset-2">Edit category: @Model.Name</h3>
+        @Html.HiddenFor(m => Model.Id)
+        <input type="hidden" asp-for="Slug" value="@Model.Slug">
+        <div class="form-group">
+            <label asp-for="Name" class="col-md-2 control-label"></label>
+            <div class="col-md-6">
+                <input asp-for="Name" class="form-control" placeholder="Enter Category Name" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+        </div>
+         <div class="form-group">
+            <label asp-for="Description" class="col-md-2 control-label"></label>
+            <div class="col-md-6">
+                <textarea asp-for="Description" class="form-control"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="btn-group col-md-offset-2 col-md-6">
+                <input class="btn btn-default" type="submit" value="Return" asp-controller="Category" asp-action="List" />
+                <input class="btn btn-success" type="submit" value="Update" />
+            </div>
+        </div>
+    </form>
+</div>
