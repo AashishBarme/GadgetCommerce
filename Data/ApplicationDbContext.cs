@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using GadgetCommerce_v2.Application.Domain;
 

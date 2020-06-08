@@ -24,18 +24,8 @@ namespace GadgetCommerce_v2.Controllers
         [Route("Product")]
         public IActionResult List()
         {
-            var productVM = new List <ProductViewModel>();
-            var products = _productService.List();
-            if(products.Count() == 0 ) return View("Empty");
-            
-            foreach(var product in products)
-            {
-                productVM.Add(new ProductViewModel{
-                    Product = product,
-                    CategoryName = _categoryService.GetCategoryName(product.CategoryId)
-                });
-            }
-            return View(productVM);
+            var productList = _productService.ListWithCategoryName();
+            return View(productList);
         }
 
         public IActionResult Create()

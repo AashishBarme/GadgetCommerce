@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 namespace GadgetCommerce_v2.Application.Domain
 {
     public class Category

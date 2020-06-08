@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using GadgetCommerce_v2.Application.Domain;
 using GadgetCommerce_v2.Application.Interfaces;
 using GadgetCommerce_v2.Data;
-
+using Microsoft.EntityFrameworkCore;
 
 namespace GadgetCommerce_v2.Application.Services
 {
@@ -14,15 +14,6 @@ namespace GadgetCommerce_v2.Application.Services
         public CategoryService(ApplicationDbContext context) : base(context)
         {
 
-        }
-
-
-        public string GetCategoryName(int id)
-        {
-            return _context.Set<Category>()
-                           .Where(c => c.Id == id)
-                           .Select(c => c.Name)
-                           .Single();
         }
     }
 }

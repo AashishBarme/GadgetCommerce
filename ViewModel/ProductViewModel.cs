@@ -10,6 +10,6 @@ namespace GadgetCommerce_v2.ViewModel
     {
             public Product Product { get; set; }
             public IEnumerable<Category> Categories {get; set;}   
-            public string CategoryName {get; set;}     
+
     }
 }
