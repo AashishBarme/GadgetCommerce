@@ -6,6 +6,6 @@ namespace GadgetCommerce_v2.Application.Interfaces
 {
     public interface IOrderService : IService<Orders>
     {
-        
+         IEnumerable<Orders> ListWithCategoryAndProductName();
     }
 }

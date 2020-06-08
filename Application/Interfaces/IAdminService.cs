@@ -8,6 +8,6 @@ namespace GadgetCommerce_v2.Application.Interfaces
 {
     public interface IAdminService : IService<Admin>
     {
-        IEnumerable<Admin> ListActive(Func<Admin, bool> predicate);
+       // IEnumerable<Admin> ListActive(Func<Admin, bool> predicate);
     }
 }

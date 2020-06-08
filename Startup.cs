@@ -32,6 +32,8 @@ namespace GadgetCommerce_v2
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<ICustomerService, CustomerService>();
             services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<IAdminService, AdminService>();
+            services.AddTransient<IOrderService, OrderService>();
 
             services.AddControllersWithViews();
 
