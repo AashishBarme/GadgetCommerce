@@ -19,10 +19,10 @@ namespace GadgetCommerce_v2.Application.Services
 
         public string GetCategoryName(int id)
         {
-            return _context.Category
+            return _context.Set<Category>()
                            .Where(c => c.Id == id)
                            .Select(c => c.Name)
-                           .SingleOrDefault();
+                           .Single();
         }
     }
 }

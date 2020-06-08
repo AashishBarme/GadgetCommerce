@@ -5,7 +5,7 @@ namespace GadgetCommerce_v2.Application.Interfaces
 {
     public interface ICategoryService : IService<Category>
     {
-        
+            string GetCategoryName(int id);
     }
-    
+
 }
