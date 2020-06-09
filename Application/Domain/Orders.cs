@@ -1,4 +1,5 @@
 using System;
+
 namespace GadgetCommerce_v2.Application.Domain
 {
     public class Orders
@@ -12,5 +13,11 @@ namespace GadgetCommerce_v2.Application.Domain
         public string ShippingAddress {get;  set;}
         public string BillingAddress {get;  set;}
         public int OrderStatus {get;  set;}
+    }
+    
+    public enum OrderStatus
+    {
+        Pending = 0,
+        Completed = 1
     }
 }

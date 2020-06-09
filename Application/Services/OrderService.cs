@@ -23,5 +23,24 @@ namespace GadgetCommerce_v2.Application.Services
                            .Include(c => c.Product)
                            .ToList();
         }
+
+        public string DisplayOrderStatusValue(int id)
+        {
+            int orderStatus = id ;
+            string status;
+            switch (orderStatus)
+            {
+                case 0:
+                    status =  "Pending";
+                    break;
+                case 1:
+                    status =  "Completed";
+                    break;   
+                default:
+                    status = "N/A";
+                    break;
+            }
+            return status;
+        }
     }
 }

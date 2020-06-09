@@ -1,4 +1,4 @@
-@model IEnumerable<Orders>
+@model IEnumerable<OrdersViewModel>
 @{ int counter = 0; } 
 
 <a class="btn btn-success mt-5" style="margin: 10px" asp-controller="Orders" asp-action="Create">Create new Category</a>
@@ -16,16 +16,16 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (Orders orders in Model)
+        @foreach (OrdersViewModel orders in Model)
         {
             <tr>
                 <td>@(++counter)</td>
-                <td>@orders.Product.ProductName</td>
-                <td>@orders.Customer.FirstName  @orders.Customer.LastName</td>
-                <td>@orders.ShippingAddress</td>
-                <td>@orders.OrderStatus</td>
-                <td><a class="btn btn-info" asp-area="" asp-controller="Orders" asp-action="Update" asp-route-id="@orders.Id">Edit</a></td>
-                <td><a class="btn btn-danger" asp-area="" asp-controller="Orders" asp-action="Delete" asp-route-id="@orders.Id" asp-route-authorId="@ViewBag.AuthorId">Delete</a></td>
+                <td>@orders.Order.Product.ProductName</td>
+                <td>@orders.Order.Customer.FirstName  @orders.Order.Customer.LastName</td>
+                <td>@orders.Order.ShippingAddress</td>
+                <td>@orders.OrderStatusValue</td>
+                <td><a class="btn btn-info" asp-area="" asp-controller="Orders" asp-action="Update" asp-route-id="@orders.Order.Id">Edit</a></td>
+                <td><a class="btn btn-danger" asp-area="" asp-controller="Orders" asp-action="Delete" asp-route-id="@orders.Order.Id" >Delete</a></td>
             </tr>
         }
     </tbody>
