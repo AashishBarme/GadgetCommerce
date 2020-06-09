@@ -21,7 +21,7 @@
         {
             <tr>
                 <td>@(++counter)</td>
-                <td>@product.ProductImage</td>
+                <td><img class="product-img" src="@("/image/"+product.ProductImage)"></td>
                 <td>@product.ProductName</td>
                 <td>@product.ProductSku</td>
                 <td>@product.ProductPrice</td>

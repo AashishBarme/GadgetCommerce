@@ -1,10 +1,25 @@
 @model ProductViewModel
 
 <div class="row orderForm">
-    <form asp-controller="Product" asp-action="Update" method="post" class="form-horizontal" role="form">
+    <form asp-controller="Product" asp-action="Update" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
         <h3 class="col-md-offset-2">Update new Product</h3>
         @Html.HiddenFor(m => m.Product.Id)
         @Html.HiddenFor(m => m.Product.ProductSlug)
+
+        <div class="form-group">
+            <label asp-for="Product.ProductImage" class="col-md-2 control-label"></label>
+            <div class="col-md-6">
+                <img class="product-img" src="@("/image/"+ Model.Product.ProductImage)">
+                <input type="hidden" name="productImage" value="@(Model.Product.ProductImage)">
+            </div>
+        </div>
+        
+             <div class="form-group">
+            <label asp-for="ProductUpdatedImage" class="col-md-2 control-label"></label>
+            <div class="col-md-6">
+                <input value="@(Model.Product.ProductImage)" asp-for="ProductUpdatedImage" type="file" class="form-control" placeholder="Add Product Image" name="file">
+            </div>
+        </div>
 
         <div class="form-group">
             <label asp-for="Product.ProductName" class="col-md-2 control-label"></label>

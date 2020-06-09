@@ -1,4 +1,6 @@
 using System;
+using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations.Schema;
 namespace GadgetCommerce_v2.Application.Domain
 {
     public class Product
