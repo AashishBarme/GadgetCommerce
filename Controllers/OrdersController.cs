@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using GadgetCommerce_v2.Application.Interfaces;
 using GadgetCommerce_v2.ViewModel;
 using GadgetCommerce_v2.Application.Domain;
+using GadgetCommerce_v2.Application.Services.Orders;
 
 namespace GadgetCommerce_v2.Controllers
 {
@@ -31,7 +32,7 @@ namespace GadgetCommerce_v2.Controllers
             var OrderVM = new List<OrdersViewModel>();
 
             if(orders.Count() == 0) return View("Empty");
-            foreach (Orders order in orders)
+            foreach (Order order in orders)
             {
                 OrderVM.Add(new OrdersViewModel()
                 {

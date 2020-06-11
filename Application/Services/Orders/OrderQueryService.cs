@@ -1,22 +1,20 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using GadgetCommerce_v2.Application.Domain;
-using GadgetCommerce_v2.Application.Interfaces;
+using System.Collections.Generic;
 using GadgetCommerce_v2.Data;
+using GadgetCommerce_v2.Application.Domain;
 using Microsoft.EntityFrameworkCore;
 
-namespace GadgetCommerce_v2.Application.Services
+namespace GadgetCommerce_v2.Application.Services.Orders
 {
-    public class OrderService: Service<Order>, IOrderService
+    public class OrderQueryService : IOrderQueryService<Order>
     {
-        public OrderService(ApplicationDbContext context) : base(context)
+        protected readonly ApplicationDbContext _context;
+        public OrderQueryService(ApplicationDbContext context)
         {
-
+            _context = context;
         }
-
-        public IEnumerable<Order> ListWithCategoryAndProductName()
+        public IEnumerable<Order> ListWithProductAndCategoryName()
         {
             return _context.Orders
                            .Include(c => c.Customer)
@@ -24,7 +22,11 @@ namespace GadgetCommerce_v2.Application.Services
                            .ToList();
         }
 
-        public string DisplayOrderStatusValue(int id)
+        public Order GetById(int id)
+        {
+            return _context.Set<Order>().Find(id);
+        }
+        public string GetOrderStatusValue(int id)
         {
             int orderStatus = id ;
             string status;

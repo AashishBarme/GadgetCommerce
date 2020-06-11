@@ -2,7 +2,7 @@ using System;
 
 namespace GadgetCommerce_v2.Application.Domain
 {
-    public class Orders
+    public class Order
     {
         public int Id {get;  set;}
         public virtual Product Product {get; set;}

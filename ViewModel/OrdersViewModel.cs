@@ -8,7 +8,7 @@ namespace GadgetCommerce_v2.ViewModel
 {
     public class OrdersViewModel
     {
-        public Orders Order {get; set;}
+        public Order Order {get; set;}
         public Product Product {get; set;}
         public Customer Customer {get; set;}
         public string OrderStatusValue {get; set;}

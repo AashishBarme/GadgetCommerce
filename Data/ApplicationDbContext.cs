@@ -15,7 +15,7 @@ namespace GadgetCommerce_v2.Data
         public DbSet<Cart> Cart {get; set;}
         public DbSet<Category> Category {get; set;}
         public DbSet<Customer> Customer {get; set;}
-        public DbSet<Orders> Orders {get; set;}
+        public DbSet<Order> Orders {get; set;}
         public DbSet<Product> Product {get;set;}
     }
 }
