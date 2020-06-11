@@ -1,9 +1,12 @@
+using System;
+using GadgetCommerce_v2.Application.Services.Categories.ViewModel;
+
 namespace GadgetCommerce_v2.Application.Services.Categories
 {
-    interface ICategoryCommandService<T>
+    public interface ICategoryCommandService
     {
-        void Create(T Entity);
-        void Update(T Entity);
-        void Delete(T Entity);
+        void Create(CreateViewModel createVM);
+        // void Update();
+        // void Delete();
     }
 }

@@ -6,17 +6,20 @@ using Microsoft.AspNetCore.Mvc;
 using GadgetCommerce_v2.Application.Interfaces;
 using GadgetCommerce_v2.Application.Domain;
 using GadgetCommerce_v2.Application.Helpers;
-
+using GadgetCommerce_v2.Application.Services.Categories;
+using GadgetCommerce_v2.Application.Services.Categories.ViewModel;
 namespace GadgetCommerce_v2.Controllers
 {
     public class CategoryController : Controller
     {
         private readonly ICategoryService _categoryService;
+        private readonly ICategoryCommandService _commandService;
         private Helpers _helpers;
 
-        public CategoryController(ICategoryService categoryService)
+        public CategoryController(ICategoryCommandService commandService ,ICategoryService categoryService )
         {
             _categoryService = categoryService;
+            _commandService = commandService;
             _helpers = new Helpers();
         }
         [Route("Category")]
@@ -29,15 +32,15 @@ namespace GadgetCommerce_v2.Controllers
 
         public IActionResult Create()
         {
-            var category = new Category();
+            var category = new CreateViewModel();
             return View(category);
         }
         [HttpPost]
-        public IActionResult Create(Category entity)
+        public IActionResult Create(CreateViewModel createVM)
         {
-            entity.Slug = _helpers.Slugify(entity.Name);
+            createVM.Slug = _helpers.Slugify(createVM.Name);
 
-            _categoryService.Create(entity);
+            _commandService.Create(createVM);
             return RedirectToAction("List");
         }
 

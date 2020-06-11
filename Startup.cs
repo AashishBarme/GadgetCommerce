@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using GadgetCommerce_v2.Data;
 using GadgetCommerce_v2.Application.Interfaces;
 using GadgetCommerce_v2.Application.Services;
+using GadgetCommerce_v2.Application.Services.Categories;
 
 namespace GadgetCommerce_v2
 {
@@ -34,6 +35,7 @@ namespace GadgetCommerce_v2
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<IAdminService, AdminService>();
             services.AddTransient<IOrderService, OrderService>();
+            services.AddTransient<ICategoryCommandService, CategoryCommandService>();
 
             services.AddControllersWithViews();
 
