@@ -3,6 +3,7 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using GadgetCommerce_v2.Application.Domain;
 
+
 namespace GadgetCommerce_v2.Data
 {
     public class ApplicationDbContext : DbContext
@@ -17,5 +18,7 @@ namespace GadgetCommerce_v2.Data
         public DbSet<Customer> Customer {get; set;}
         public DbSet<Order> Orders {get; set;}
         public DbSet<Product> Product {get;set;}
+
+
     }
 }

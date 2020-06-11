@@ -12,20 +12,20 @@ namespace GadgetCommerce_v2.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly ICategoryService _categoryService;
-        private readonly ICategoryCommandService _commandService;
+        private readonly ICategoryCommandService _command;
+        private readonly ICategoryQueryService _query;
         private Helpers _helpers;
 
-        public CategoryController(ICategoryCommandService commandService ,ICategoryService categoryService )
+        public CategoryController(ICategoryCommandService commandService ,ICategoryQueryService queryService )
         {
-            _categoryService = categoryService;
-            _commandService = commandService;
+            _command = commandService;
+            _query = queryService;
             _helpers = new Helpers();
         }
         [Route("Category")]
         public IActionResult List()
         {
-            var categories = _categoryService.List();
+            var categories = _query.List();
             if(categories.Count() == 0 ) return View("Empty");
             return View(categories);
         }
@@ -40,27 +40,28 @@ namespace GadgetCommerce_v2.Controllers
         {
             createVM.Slug = _helpers.Slugify(createVM.Name);
 
-            _commandService.Create(createVM);
+            _command.Create(createVM);
             return RedirectToAction("List");
         }
 
-
-        public IActionResult Update(int id)
+         public IActionResult Update(int id)
         {
-            var category = _categoryService.GetById(id);
+             var category = _query.GetById(id);
             return View(category);
         }
         [HttpPost]
-        public IActionResult Update(Category entity)
+        public IActionResult Update(UpdateViewModel updateVM)
         {
-            _categoryService.Update(entity);
+            updateVM.Slug = _helpers.Slugify(updateVM.Name);
+
+            _command.Update(updateVM);
             return RedirectToAction("List");
         }
 
         public IActionResult Delete(int id)
         {
-            var category = _categoryService.GetById(id);
-            _categoryService.Delete(category);
+            var category = _query.GetById(id);
+            _command.Delete(category);
             return RedirectToAction("List");
         }
     }
