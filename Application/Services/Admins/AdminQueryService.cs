@@ -4,7 +4,7 @@ using GadgetCommerce_v2.Application.Domain;
 
 namespace GadgetCommerce_v2.Application.Services.Admins
 {
-    public class AdminQueryService : IAdminQueryService<Admin>
+    public class AdminQueryService : IAdminQueryService
     {
         protected readonly ApplicationDbContext _context;
         public AdminQueryService(ApplicationDbContext context)

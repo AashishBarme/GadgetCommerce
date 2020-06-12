@@ -10,12 +10,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using GadgetCommerce_v2.Data;
-using GadgetCommerce_v2.Application.Interfaces;
-using GadgetCommerce_v2.Application.Services;
 using GadgetCommerce_v2.Application.Services.Categories;
 using GadgetCommerce_v2.Application.Services.Customers;
 using GadgetCommerce_v2.Application.Services.Products;
 using GadgetCommerce_v2.Application.Services.Orders;
+using GadgetCommerce_v2.Application.Services.Admins;
 
 namespace GadgetCommerce_v2
 {
@@ -33,11 +32,6 @@ namespace GadgetCommerce_v2
         {
             services.AddDbContext<ApplicationDbContext>(options =>
             options.UseMySql("Server=localhost;Database=GadgetCommerce;User Id=admin;Password=65403;"));
-            services.AddTransient<ICategoryService, CategoryService>();
-            services.AddTransient<ICustomerService, CustomerService>();
-            services.AddTransient<IProductService, ProductService>();
-            services.AddTransient<IAdminService, AdminService>();
-            services.AddTransient<IOrderService, OrderService>();
             services.AddTransient<ICategoryCommandService, CategoryCommandService>();
             services.AddTransient<ICategoryQueryService, CategoryQueryService>();
             services.AddTransient<ICustomerCommandService, CustomerCommandService>();
@@ -46,6 +40,8 @@ namespace GadgetCommerce_v2
             services.AddTransient<IProductQueryService, ProductQueryService>();
             services.AddTransient<IOrderCommandService, OrderCommandService>();
             services.AddTransient<IOrderQueryService, OrderQueryService>();
+            services.AddTransient<IAdminCommandService, AdminCommandService>();
+            services.AddTransient<IAdminQueryService, AdminQueryService>();
 
 
             services.AddControllersWithViews();

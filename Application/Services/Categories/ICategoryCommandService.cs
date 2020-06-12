@@ -6,8 +6,8 @@ namespace GadgetCommerce_v2.Application.Services.Categories
 {
     public interface ICategoryCommandService
     {
-        void Create(CreateViewModel createVM);
-        void Update(UpdateViewModel updateVM);
+        void Create(CategoryCreateVM createVM);
+        void Update(CategoryUpdateVM updateVM);
         void Delete(Category entity);
     }
 }

@@ -1,4 +1,5 @@
-@model IEnumerable<Category>
+@using GadgetCommerce_v2.Application.Services.Categories.ViewModel
+@model IEnumerable<CategoryListVM>
 @{ int counter = 0; } 
 
 <a class="btn btn-success mt-5" style="margin: 10px" asp-controller="Category" asp-action="Create">Create new Category</a>
@@ -14,14 +15,14 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (Category category in Model)
+        @foreach (CategoryListVM category in Model)
         {
             <tr>
                 <td>@(++counter)</td>
                 <td>@category.Name</td>
                 <td>@category.Description</td>
                 <td><a class="btn btn-info" asp-area="" asp-controller="Category" asp-action="Update" asp-route-id="@category.Id">Edit</a></td>
-                <td><a class="btn btn-danger" asp-area="" asp-controller="Category" asp-action="Delete" asp-route-id="@category.Id" asp-route-authorId="@ViewBag.AuthorId">Delete</a></td>
+                <td><a class="btn btn-danger" asp-area="" asp-controller="Category" asp-action="Delete" asp-route-id="@category.Id" >Delete</a></td>
             </tr>
         }
     </tbody>

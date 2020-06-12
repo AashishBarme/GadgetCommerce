@@ -14,7 +14,7 @@ namespace GadgetCommerce_v2.Application.Services.Categories
             _context = context;
             _category = new Category();
         }
-         public void Create(CreateViewModel createVM)
+         public void Create(CategoryCreateVM createVM)
         {
             _category.Name = createVM.Name;
             _category.Slug = createVM.Slug;
@@ -23,7 +23,7 @@ namespace GadgetCommerce_v2.Application.Services.Categories
             _context.SaveChanges();
         }
 
-        public void Update(UpdateViewModel updateVM)
+        public void Update(CategoryUpdateVM updateVM)
         {
             _category.Id = updateVM.Id;
             _category.Name = updateVM.Name;

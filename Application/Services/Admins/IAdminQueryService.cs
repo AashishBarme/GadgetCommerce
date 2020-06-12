@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
+using GadgetCommerce_v2.Application.Services.Admins.ViewModel;
+using GadgetCommerce_v2.Application.Domain;
 namespace GadgetCommerce_v2.Application.Services.Admins
 {
-    interface IAdminQueryService<T> where T : class
+    public interface IAdminQueryService
     {   
-        IEnumerable<T> List();
-        T GetById(int id);
+        IEnumerable<Admin> List();
+        Admin GetById(int id);
     }
 }

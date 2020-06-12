@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using GadgetCommerce_v2.Application.Helpers;
 using GadgetCommerce_v2.Application.Services.Categories;
 using GadgetCommerce_v2.Application.Services.Categories.ViewModel;
+using GadgetCommerce_v2.Application.Domain;
 namespace GadgetCommerce_v2.Controllers
 {
     public class CategoryController : Controller
@@ -23,18 +24,29 @@ namespace GadgetCommerce_v2.Controllers
         [Route("Category")]
         public IActionResult List()
         {
-            var categories = _query.List();
-            if(categories.Count() == 0 ) return View("Empty");
-            return View(categories);
+            var Categories = _query.List();
+            var ListVM = new List<CategoryListVM>();
+            if(Categories.Count() == 0 ) return View("Empty");
+
+            foreach(Category category in Categories)
+            {
+                ListVM.Add( new CategoryListVM()
+                {
+                    Id = category.Id,
+                    Name = category.Name,
+                    Description = category.Description
+                });
+            }
+            return View(ListVM);
         }
 
         public IActionResult Create()
         {
-            var category = new CreateViewModel();
+            var category = new CategoryCreateVM();
             return View(category);
         }
         [HttpPost]
-        public IActionResult Create(CreateViewModel createVM)
+        public IActionResult Create(CategoryCreateVM createVM)
         {
             createVM.Slug = _helpers.Slugify(createVM.Name);
 
@@ -42,13 +54,18 @@ namespace GadgetCommerce_v2.Controllers
             return RedirectToAction("List");
         }
 
-         public IActionResult Update(int id)
+         public IActionResult Update(int id , CategoryUpdateVM updateVM)
         {
-             var category = _query.GetById(id);
+            var category = _query.GetById(id);
+            updateVM.Id = category.Id;
+            updateVM.Name = category.Name;
+            updateVM.Slug = category.Slug;
+            updateVM.Description = category.Description;
+            
             return View(category);
         }
         [HttpPost]
-        public IActionResult Update(UpdateViewModel updateVM)
+        public IActionResult Update(CategoryUpdateVM updateVM)
         {
             updateVM.Slug = _helpers.Slugify(updateVM.Name);
 

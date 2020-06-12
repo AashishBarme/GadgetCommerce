@@ -1,4 +1,5 @@
-@model IEnumerable<Admin>
+@using GadgetCommerce_v2.Application.Services.Admins.ViewModel
+@model IEnumerable<AdminListVM>
 @{ int counter = 0; } 
 
 <a class="btn btn-success mt-5" style="margin: 10px" asp-controller="Admin" asp-action="Create">Create new Admin</a>
@@ -16,7 +17,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (Admin admin in Model)
+        @foreach (AdminListVM admin in Model)
         {
             <tr>
                 <td>@(++counter)</td>

@@ -6,7 +6,7 @@ using GadgetCommerce_v2.Application.Domain;
 
 namespace GadgetCommerce_v2.Application.Services.Categories.ViewModel
 {
-    public class CreateViewModel 
+    public class CategoryCreateVM 
     {
         public string Name {get; set;}
         public string Slug {get; set;}
