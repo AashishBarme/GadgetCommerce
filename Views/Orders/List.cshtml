@@ -1,4 +1,5 @@
-@model IEnumerable<OrdersViewModel>
+@using GadgetCommerce_v2.Application.Services.Orders.ViewModel
+@model IEnumerable<OrderListVM>
 @{ int counter = 0; } 
 
 <a class="btn btn-success mt-5" style="margin: 10px" asp-controller="Orders" asp-action="Create">Create new orders</a>
@@ -16,16 +17,16 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (OrdersViewModel orders in Model)
+        @foreach (OrderListVM orders in Model)
         {
             <tr>
                 <td>@(++counter)</td>
-                <td>@orders.Order.Product.ProductName</td>
-                <td>@orders.Order.Customer.FirstName  @orders.Order.Customer.LastName</td>
-                <td>@orders.Order.ShippingAddress</td>
-                <td>@orders.OrderStatusValue</td>
-                <td><a class="btn btn-info" asp-area="" asp-controller="Orders" asp-action="Update" asp-route-id="@orders.Order.Id">Edit</a></td>
-                <td><a class="btn btn-danger" asp-area="" asp-controller="Orders" asp-action="Delete" asp-route-id="@orders.Order.Id" >Delete</a></td>
+                <td>@orders.ProductName</td>
+                <td>@orders.CustomerName</td>
+                <td>@orders.ShippingAddress</td>
+                <td>@orders.OrderStatus</td>
+                <td><a class="btn btn-info" asp-area="" asp-controller="Orders" asp-action="Update" asp-route-id="@orders.Id">Edit</a></td>
+                <td><a class="btn btn-danger" asp-area="" asp-controller="Orders" asp-action="Delete" asp-route-id="@orders.Id" >Delete</a></td>
             </tr>
         }
     </tbody>

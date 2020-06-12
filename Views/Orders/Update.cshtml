@@ -1,53 +1,55 @@
-@model OrdersViewModel
+@using GadgetCommerce_v2.Application.Services.Orders.ViewModel
+@using GadgetCommerce_v2.Application.Enums
+@model OrderUpdateVM
 
 <div class="row orderForm">
     <form asp-controller="Orders" asp-action="Update" method="post"  role="form">
-        @Html.HiddenFor(m => Model.Order.Id)
-        @Html.HiddenFor(m => Model.Order.CustomerId)
-        @Html.HiddenFor(m => Model.Order.ProductId)
+        @Html.HiddenFor(m => Model.Id)
+        @Html.HiddenFor(m => Model.CustomerId)
+        @Html.HiddenFor(m => Model.ProductId)
         <h3 class="col-md-offset-2">Update Orders</h3>
         <div class="form-group">
-            <label asp-for="Order.Product.ProductName" class="col-md-2 control-label"></label>
+            <label asp-for="ProductName" class="col-md-2 control-label"></label>
             <div class="col-md-6">
-                <input asp-for="Order.Product.ProductName" class="form-control" placeholder="Enter Orders " />
-                <span asp-validation-for="Order.Product.ProductName" class="text-danger"></span>
+                <input asp-for="ProductName" class="form-control" placeholder="Enter Orders " />
+                <span asp-validation-for="ProductName" class="text-danger"></span>
             </div>
         </div>
 
         <div class="form-group">
-            <label asp-for="Order.Customer.UserName" class="col-md-2 control-label"></label>
+            <label asp-for="CustomerName" class="col-md-2 control-label"></label>
             <div class="col-md-6">
-                <input asp-for="Order.Customer.UserName" class="form-control" placeholder="Enter Orders " />
-                <span asp-validation-for="Order.Customer.UserName" class="text-danger"></span>
+                <input asp-for="CustomerName" class="form-control" placeholder="Enter Orders " />
+                <span asp-validation-for="CustomerName" class="text-danger"></span>
             </div>
         </div>
 
          <div class="form-group">
-            <label asp-for="Order.BillingAddress" class="col-md-2 control-label"></label>
+            <label asp-for="BillingAddress" class="col-md-2 control-label"></label>
             <div class="col-md-6">
-                <input asp-for="Order.BillingAddress" class="form-control" placeholder="Enter Orders " />
-                <span asp-validation-for="Order.BillingAddress" class="text-danger"></span>
+                <input asp-for="BillingAddress" class="form-control" placeholder="Enter Orders " />
+                <span asp-validation-for="BillingAddress" class="text-danger"></span>
             </div>
         </div>
          <div class="form-group">
-            <label asp-for="Order.ShippingAddress" class="col-md-2 control-label"></label>
+            <label asp-for="ShippingAddress" class="col-md-2 control-label"></label>
             <div class="col-md-6">
-                <input asp-for="Order.ShippingAddress" class="form-control" placeholder="Enter Orders " />
-                <span asp-validation-for="Order.ShippingAddress" class="text-danger"></span>
+                <input asp-for="ShippingAddress" class="form-control" placeholder="Enter Orders " />
+                <span asp-validation-for="ShippingAddress" class="text-danger"></span>
             </div>
         </div>  
         <div class="form-group">
-            <label asp-for="Order.PaymentMethod" class="col-md-2 control-label"></label>
+            <label asp-for="PaymentMethod" class="col-md-2 control-label"></label>
             <div class="col-md-6">
-                <input asp-for="Order.PaymentMethod" class="form-control" placeholder="Enter Orders " />
-                <span asp-validation-for="Order.PaymentMethod" class="text-danger"></span>
+                <input asp-for="PaymentMethod" class="form-control" placeholder="Enter Orders " />
+                <span asp-validation-for="PaymentMethod" class="text-danger"></span>
             </div>
         </div>  
 
               <div class="form-group">
-            <label asp-for="Order.OrderStatus" class="col-md-2 control-label"></label>
+            <label asp-for="OrderStatus" class="col-md-2 control-label"></label>
             <div class="col-md-4">
-                 @Html.DropDownListFor(m => m.Order.OrderStatus, 
+                 @Html.DropDownListFor(m => m.OrderStatus, 
                                         Enum.GetValues(typeof(OrderStatus))
                                         .Cast<OrderStatus>()
                                         .Select(x => new SelectListItem { Text = x.ToString(), Value = ((int)x).ToString() }),

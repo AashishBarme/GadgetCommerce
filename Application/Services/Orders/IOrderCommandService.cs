@@ -1,12 +1,13 @@
 using System;
-
+using System.Collections.Generic;
+using GadgetCommerce_v2.Application.Domain;
+using GadgetCommerce_v2.Application.Services.Orders.ViewModel;
 namespace GadgetCommerce_v2.Application.Services.Orders
 {
-    public interface IOrderCommandService<T> where T: class
+    public interface IOrderCommandService
     {
-         void Create(T entity);
-         void Update(T entity);
-         void Delete(T entity);
+         void Update(OrderUpdateVM updateVM);
+         void Delete(Order entity);
 
     }
 }

@@ -1,9 +1,9 @@
 @model Customer
 
 <div class="row orderForm">
-    <form asp-controller="Customer" asp-action="Create" method="post"  role="form">
+    <form asp-controller="Customer" asp-action="Update" method="post"  role="form">
         @Html.HiddenFor(m => Model.Id)
-        <h3 class="col-md-offset-2">Create new Customer</h3>
+        <h3 class="col-md-offset-2">Update Customer</h3>
         <div class="form-group">
             <label asp-for="FirstName" class="col-md-2 control-label"></label>
             <div class="col-md-6">

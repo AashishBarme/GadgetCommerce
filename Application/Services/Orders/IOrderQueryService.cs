@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
+using GadgetCommerce_v2.Application.Domain;
 namespace GadgetCommerce_v2.Application.Services.Orders
 {
-    public interface IOrderQueryService<T> where T: class
+    public interface IOrderQueryService
     {
-        IEnumerable<T> ListWithProductAndCategoryName();
-        T GetById(int id);
+        IEnumerable<Order> ListWithCategoryAndProductName();
+        Order GetById(int id);
         string GetOrderStatusValue(int id);
-         
+        
     }
 }

@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using GadgetCommerce_v2.Application.Interfaces;
-using GadgetCommerce_v2.Application.Domain;
 using GadgetCommerce_v2.Application.Helpers;
 using GadgetCommerce_v2.Application.Services.Categories;
 using GadgetCommerce_v2.Application.Services.Categories.ViewModel;

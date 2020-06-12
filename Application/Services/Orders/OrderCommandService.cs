@@ -1,26 +1,32 @@
 using System;
 using GadgetCommerce_v2.Data;
 using GadgetCommerce_v2.Application.Domain;
+using GadgetCommerce_v2.Application.Services.Orders.ViewModel;
 using Microsoft.EntityFrameworkCore;
 namespace GadgetCommerce_v2.Application.Services.Orders
 {
-    public class OrderCommandService : IOrderCommandService<Order>
+    public class OrderCommandService : IOrderCommandService
     {
         
         protected readonly ApplicationDbContext _context;
+        protected readonly Order _order;
         public OrderCommandService(ApplicationDbContext context)
         {
             _context = context;
-        }
-         public void Create(Order entity)
-        {
-            _context.Add(entity);
-            _context.SaveChanges();
+            _order = new Order();
         }
 
-        public void Update(Order entity)
+        public void Update(OrderUpdateVM updateVM)
         {
-            _context.Entry(entity).State = EntityState.Modified;
+            _order.Id = updateVM.Id;
+            _order.CustomerId = updateVM.CustomerId;
+            _order.ProductId = updateVM.ProductId;
+            _order.BillingAddress = updateVM.BillingAddress;
+            _order.ShippingAddress = updateVM.ShippingAddress;
+            _order.PaymentMethod = updateVM.PaymentMethod;
+            _order.OrderStatus = updateVM.OrderStatus;
+
+            _context.Entry(_order).State = EntityState.Modified;
             _context.SaveChanges();
         }
 

@@ -1,10 +1,12 @@
 using GadgetCommerce_v2.Data;
 using GadgetCommerce_v2.Application.Domain;
 using System.Collections.Generic;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace GadgetCommerce_v2.Application.Services.Customers
 {
-    public class CustomerQueryService : ICustomerQueryService<Customer>
+    public class CustomerQueryService : ICustomerQueryService
     {
         protected readonly ApplicationDbContext _context;
         public CustomerQueryService(ApplicationDbContext context)
@@ -20,5 +22,7 @@ namespace GadgetCommerce_v2.Application.Services.Customers
         {
             return _context.Set<Customer>();
         }
+
+                          
     }
 }

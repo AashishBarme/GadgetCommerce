@@ -7,14 +7,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GadgetCommerce_v2.Application.Services.Orders
 {
-    public class OrderQueryService : IOrderQueryService<Order>
+    public class OrderQueryService : IOrderQueryService
     {
         protected readonly ApplicationDbContext _context;
         public OrderQueryService(ApplicationDbContext context)
         {
             _context = context;
         }
-        public IEnumerable<Order> ListWithProductAndCategoryName()
+        public IEnumerable<Order> ListWithCategoryAndProductName()
         {
             return _context.Orders
                            .Include(c => c.Customer)

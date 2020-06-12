@@ -1,9 +1,11 @@
+using GadgetCommerce_v2.Application.Services.Products.ViewModel;
+using GadgetCommerce_v2.Application.Domain;
 namespace GadgetCommerce_v2.Application.Services.Products
 {
-    public interface IProductCommandService<T> where T : class
+    public interface IProductCommandService
     {
-        void Create(T entity);
-         void Update(T entity);
-         void Delete(T entity);
+        void Create(ProductCreateVM createVM);
+         void Update(ProductUpdateVM updateVM);
+         void Delete(Product entity);
     }
 }

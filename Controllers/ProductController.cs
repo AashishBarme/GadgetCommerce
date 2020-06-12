@@ -5,47 +5,70 @@ using System.Threading.Tasks;
 using System.IO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using GadgetCommerce_v2.Application.Interfaces;
+
 using GadgetCommerce_v2.Application.Helpers;
-using GadgetCommerce_v2.ViewModel;
 using Microsoft.AspNetCore.Hosting;
+using GadgetCommerce_v2.Application.Domain;
+using GadgetCommerce_v2.Application.Services.Products;
+using GadgetCommerce_v2.Application.Services.Categories;
+using GadgetCommerce_v2.Application.Services.Products.ViewModel;
 
 namespace GadgetCommerce_v2.Controllers
 {
     public class ProductController : Controller
     {
-        private readonly IProductService _productService;
-        private readonly ICategoryService _categoryService;
+        private readonly ICategoryQueryService _categoryService;
         private readonly IWebHostEnvironment _hostEnvironment;
+        private readonly IProductCommandService _command;
+        private readonly IProductQueryService _query;
         private Helpers _helpers;
         public ProductController(
-            IProductService productService, 
-            ICategoryService categoryService,
-            IWebHostEnvironment hostEnvironment)
+            ICategoryQueryService categoryService,
+            IWebHostEnvironment hostEnvironment,
+            IProductCommandService commandService,
+            IProductQueryService queryService)
         {
-            _productService = productService;
             _categoryService = categoryService;
             _hostEnvironment = hostEnvironment;
+            _command = commandService;
+            _query = queryService;
             _helpers = new Helpers();
         }
 
         [Route("Product")]
         public IActionResult List()
         {
-            var productList = _productService.ListWithCategoryName();
-            return View(productList);
+            var Products = _query.ListWithCategoryName();
+            var ListVM = new List<ProductListVM>();
+
+            if(Products.Count() == 0 ) return View("Empty");
+
+            foreach (Product Product in Products)
+            {
+                ListVM.Add( new ProductListVM()
+                {
+                    Id = Product.Id,
+                    ProductName = Product.ProductName,
+                    ProductSlug = Product.ProductSlug,
+                    ProductPrice = Product.ProductPrice,
+                    ProductSku = Product.ProductSku,
+                    ProductImage = Product.ProductImage,
+                    CategoryName = Product.Category.Name
+                });
+            }
+            return View(ListVM);
         }
 
         public IActionResult Create()
         {
-            var productVM = new ProductViewModel()
+            var productVM = new ProductCreateVM()
             {
                 Categories = _categoryService.List()
             };
             return View(productVM);
         }
         [HttpPost]
-        public async Task<IActionResult> Create(ProductViewModel productViewModel, IFormFile file)
+        public async Task<IActionResult> Create(ProductCreateVM createVM, IFormFile file)
         {
             if(file.Length > 0)
             {
@@ -58,27 +81,31 @@ namespace GadgetCommerce_v2.Controllers
                {
                    await file.CopyToAsync(fileStream);
                }
-                productViewModel.Product.ProductImage = fileName; 
+                createVM.ProductImage = fileName; 
             }    
-            productViewModel.Product.ProductSlug = _helpers.Slugify(productViewModel.Product.ProductName);
 
-            _productService.Create(productViewModel.Product);
+            createVM.ProductSlug = _helpers.Slugify(createVM.ProductName);
+
+            _command.Create(createVM);
             return RedirectToAction("List");
         }
 
-        public IActionResult Update(int id)
+        public IActionResult Update(int id , ProductUpdateVM updateVM)
         {
-            var productVM = new ProductViewModel()
-            {
-                Product = _productService.GetById(id),
-                Categories = _categoryService.List()
-            };
-            return View(productVM);
+           var product = _query.GetById(id);
+            updateVM.ProductImage = product.ProductImage;
+            updateVM.ProductName = product.ProductName;
+            updateVM.ProductPrice = product.ProductPrice;
+            updateVM.ProductSku = product.ProductSku;
+            updateVM.ProductSlug = product.ProductSlug;
+            updateVM.CategoryId = product.CategoryId;
+            updateVM.Categories = _categoryService.List();
+           return View(updateVM);
         }
         [HttpPost]
-        public async Task<IActionResult> Update(ProductViewModel productViewModel, IFormFile file, string productImage)
+        public async Task<IActionResult> Update(ProductUpdateVM updateVM, IFormFile file, string productImage)
         {   
-            productViewModel.Product.ProductImage = productImage;
+            updateVM.ProductImage = productImage;
             if(file != null)
             {
                string wwwRootPath = _hostEnvironment.WebRootPath;
@@ -90,16 +117,16 @@ namespace GadgetCommerce_v2.Controllers
                {
                    await file.CopyToAsync(fileStream);
                }
-                productViewModel.Product.ProductImage = fileName; 
+                updateVM.ProductImage = fileName; 
             } 
             
-            _productService.Update(productViewModel.Product);
+            _command.Update(updateVM);
             return RedirectToAction("List");
         }
 
         public IActionResult Delete(int id)
         {
-            var product = _productService.GetById(id);
+            var product = _query.GetById(id);
             if(product.ProductImage != null )
             {
                 var imagePath = Path.Combine(_hostEnvironment.WebRootPath,"image",product.ProductImage);
@@ -108,7 +135,7 @@ namespace GadgetCommerce_v2.Controllers
                     System.IO.File.Delete(imagePath);
                 }
             }
-            _productService.Delete(product);
+            _command.Delete(product);
             return RedirectToAction("List");
         }
     }

@@ -3,23 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using GadgetCommerce_v2.Application.Interfaces;
-using GadgetCommerce_v2.Application.Domain;
+using GadgetCommerce_v2.Application.Services.Customers;
+using GadgetCommerce_v2.Application.Services.Customers.ViewModel;
 
 namespace GadgetCommerce_v2.Controllers
 {
     public class CustomerController : Controller 
     {
-        private readonly ICustomerService _customerService;
-        public CustomerController(ICustomerService customerService)
+        private readonly ICustomerCommandService _command;
+        private readonly ICustomerQueryService _query;
+        public CustomerController(ICustomerQueryService queryService, ICustomerCommandService commandService)
         {
-                _customerService = customerService;
+                _command = commandService;
+                _query = queryService;
         }
 
         [Route("Customer")]
         public IActionResult List()
         {
-            var customers = _customerService.List();
+            var customers = _query.List();
             if(customers.Count() == 0 ) return View("Empty");
 
             return View(customers);
@@ -28,33 +30,33 @@ namespace GadgetCommerce_v2.Controllers
 
         public IActionResult Create()
         {
-             var customer = new Customer();
+             var customer = new CustomerCreateVM();
             return View(customer);
         }
         [HttpPost]
-        public IActionResult Create(Customer customer)
+        public IActionResult Create(CustomerCreateVM createVM)
         {
-            _customerService.Create(customer);
+            _command.Create(createVM);
             return RedirectToAction("List");
         }
 
 
         public IActionResult Update(int id)
         {
-             var customer = _customerService.GetById(id);
+             var customer = _query.GetById(id);
             return View(customer);
         }
         [HttpPost]
-        public IActionResult Update(Customer customer)
+        public IActionResult Update(CustomerUpdateVM updateVM)
         {
-            _customerService.Update(customer);
+            _command.Update(updateVM);
             return RedirectToAction("List");
         }
         
         public IActionResult Delete(int id)
         {
-            var customer = _customerService.GetById(id);
-            _customerService.Delete(customer);
+            var customer = _query.GetById(id);
+            _command.Delete(customer);
             return RedirectToAction("List");
         }
     }

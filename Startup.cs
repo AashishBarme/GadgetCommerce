@@ -13,6 +13,9 @@ using GadgetCommerce_v2.Data;
 using GadgetCommerce_v2.Application.Interfaces;
 using GadgetCommerce_v2.Application.Services;
 using GadgetCommerce_v2.Application.Services.Categories;
+using GadgetCommerce_v2.Application.Services.Customers;
+using GadgetCommerce_v2.Application.Services.Products;
+using GadgetCommerce_v2.Application.Services.Orders;
 
 namespace GadgetCommerce_v2
 {
@@ -37,6 +40,13 @@ namespace GadgetCommerce_v2
             services.AddTransient<IOrderService, OrderService>();
             services.AddTransient<ICategoryCommandService, CategoryCommandService>();
             services.AddTransient<ICategoryQueryService, CategoryQueryService>();
+            services.AddTransient<ICustomerCommandService, CustomerCommandService>();
+            services.AddTransient<ICustomerQueryService, CustomerQueryService>();
+            services.AddTransient<IProductCommandService, ProductCommandService>();
+            services.AddTransient<IProductQueryService, ProductQueryService>();
+            services.AddTransient<IOrderCommandService, OrderCommandService>();
+            services.AddTransient<IOrderQueryService, OrderQueryService>();
+
 
             services.AddControllersWithViews();
 

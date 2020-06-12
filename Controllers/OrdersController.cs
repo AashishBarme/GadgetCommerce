@@ -3,41 +3,48 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using GadgetCommerce_v2.Application.Interfaces;
-using GadgetCommerce_v2.ViewModel;
 using GadgetCommerce_v2.Application.Domain;
 using GadgetCommerce_v2.Application.Services.Orders;
+using GadgetCommerce_v2.Application.Services.Customers;
+using GadgetCommerce_v2.Application.Services.Products;
+using GadgetCommerce_v2.Application.Services.Orders.ViewModel;
 
 namespace GadgetCommerce_v2.Controllers
 {
     public class OrdersController : Controller
     {
-        private readonly IOrderService _orderService;
-        private readonly IProductService __productService;
-        private readonly ICustomerService _customerService;
+        private readonly IProductQueryService __productService;
+        private readonly ICustomerQueryService _customerService;
+        private readonly IOrderCommandService _command;
+        private readonly IOrderQueryService _query;
         public OrdersController(
-            IOrderService orderService ,
-            IProductService productService ,
-            ICustomerService customerService)
+            IProductQueryService productService ,
+            ICustomerQueryService customerService,
+            IOrderCommandService commandService,
+            IOrderQueryService queryService)
         {
-            _orderService = orderService;
             _customerService = customerService;
             __productService = productService;
+            _command = commandService;
+            _query = queryService;
         }
 
         [Route("Orders")]
         public IActionResult List()
         {
-            var orders = _orderService.ListWithCategoryAndProductName();
-            var OrderVM = new List<OrdersViewModel>();
+            var orders = _query.ListWithCategoryAndProductName();
+            var OrderVM = new List<OrderListVM>();
 
             if(orders.Count() == 0) return View("Empty");
             foreach (Order order in orders)
             {
-                OrderVM.Add(new OrdersViewModel()
+                OrderVM.Add(new OrderListVM()
                 {
-                    Order = order,
-                    OrderStatusValue = _orderService.DisplayOrderStatusValue(order.OrderStatus)
+                    Id = order.Id,
+                    ProductName = order.Product.ProductName,
+                    CustomerName = order.Customer.UserName,
+                    ShippingAddress = order.ShippingAddress,
+                    OrderStatus = _query.GetOrderStatusValue(order.OrderStatus)
                 });
             }
             return View(OrderVM);
@@ -45,30 +52,31 @@ namespace GadgetCommerce_v2.Controllers
 
         public IActionResult Delete(int id)
         {
-            var order = _orderService.GetById(id);
-            _orderService.Delete(order);
+            var order = _query.GetById(id);
+            _command.Delete(order);
 
             return RedirectToAction("List");
         }
 
-        public IActionResult Update(int id)
+        public IActionResult Update(int id, OrderUpdateVM updateVM)
         {
-            var order = _orderService.GetById(id);     
+            var order = _query.GetById(id);     
+            updateVM.Id = order.Id;
+            updateVM.ProductId = order.ProductId;
+            updateVM.CustomerId = order.CustomerId;
+            updateVM.ProductName = __productService.GetById(order.ProductId).ProductName;
+            updateVM.CustomerName = _customerService.GetById(order.CustomerId).UserName;
+            updateVM.BillingAddress = order.BillingAddress;
+            updateVM.ShippingAddress = order.ShippingAddress;
+            updateVM.PaymentMethod = order.PaymentMethod;
+            updateVM.OrderStatus = order.OrderStatus;
 
-            var orderVM = new OrdersViewModel()
-            {
-                Order = _orderService.GetById(id),
-                Product = __productService.GetById(order.ProductId),
-                Customer = _customerService.GetById(order.CustomerId)
-
-            };
-
-            return View(orderVM);
+            return View(updateVM);
         }
         [HttpPost]
-        public IActionResult Update(OrdersViewModel ordersViewModel)
+        public IActionResult Update(OrderUpdateVM updateVM)
         {
-            _orderService.Update(ordersViewModel.Order);
+            _command.Update(updateVM);
             return RedirectToAction("List");
         }
         

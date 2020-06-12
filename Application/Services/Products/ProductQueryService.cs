@@ -3,9 +3,10 @@ using GadgetCommerce_v2.Application.Domain;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using GadgetCommerce_v2.Application.Services.Products.ViewModel;
 namespace GadgetCommerce_v2.Application.Services.Products
 {
-    public class ProductQueryService : IProductQueryService<Product>
+    public class ProductQueryService : IProductQueryService
     {
         private readonly ApplicationDbContext _context;
         public ProductQueryService(ApplicationDbContext context)
@@ -15,9 +16,8 @@ namespace GadgetCommerce_v2.Application.Services.Products
 
         public IEnumerable<Product> ListWithCategoryName()
         {
-            return _context.Product
-                           .Include(c => c.Category)
-                           .ToList();
+            return _context.Product.Include(p => p.Category)
+                                   .ToList();                   
         }
 
         public Product GetById(int id)

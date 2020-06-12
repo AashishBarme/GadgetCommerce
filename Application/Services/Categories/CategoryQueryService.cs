@@ -8,9 +8,11 @@ namespace GadgetCommerce_v2.Application.Services.Categories
     public class CategoryQueryService : ICategoryQueryService
     {
         protected readonly ApplicationDbContext _context;
+        private readonly Category _category;
         public CategoryQueryService(ApplicationDbContext context)
         {
             _context = context;
+            _category = new Category();
         }
           public Category GetById(int id)
         {

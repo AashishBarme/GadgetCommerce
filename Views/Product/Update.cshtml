@@ -1,55 +1,61 @@
-@model ProductViewModel
+@using GadgetCommerce_v2.Application.Services.Products.ViewModel
+@model ProductUpdateVM
 
 <div class="row orderForm">
     <form asp-controller="Product" asp-action="Update" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
         <h3 class="col-md-offset-2">Update new Product</h3>
-        @Html.HiddenFor(m => m.Product.Id)
-        @Html.HiddenFor(m => m.Product.ProductSlug)
+        @Html.HiddenFor(m => m.Id)
+        @Html.HiddenFor(m => m.ProductSlug)
 
         <div class="form-group">
-            <label asp-for="Product.ProductImage" class="col-md-2 control-label"></label>
+            <label asp-for="ProductImage" class="col-md-2 control-label"></label>
             <div class="col-md-6">
-                <img class="product-img" src="@("/image/"+ Model.Product.ProductImage)">
-                <input type="hidden" name="productImage" value="@(Model.Product.ProductImage)">
+                <img class="product-img" src="@("/image/"+ Model.ProductImage)">
+                <input type="hidden" name="productImage" value="@(Model.ProductImage)">
             </div>
         </div>
         
              <div class="form-group">
             <label asp-for="ProductUpdatedImage" class="col-md-2 control-label"></label>
             <div class="col-md-6">
-                <input value="@(Model.Product.ProductImage)" asp-for="ProductUpdatedImage" type="file" class="form-control" placeholder="Add Product Image" name="file">
+                <input value="@(Model.ProductImage)" asp-for="ProductUpdatedImage" type="file" class="form-control" placeholder="Add Product Image" name="file">
             </div>
         </div>
 
         <div class="form-group">
-            <label asp-for="Product.ProductName" class="col-md-2 control-label"></label>
+            <label asp-for="ProductName" class="col-md-2 control-label"></label>
             <div class="col-md-6">
-                <input asp-for="Product.ProductName" class="form-control" placeholder="Enter Product ProductName" />
-                <span asp-validation-for="Product.ProductName" class="text-danger"></span>
+                <input asp-for="ProductName" class="form-control" placeholder="Enter Product ProductName" />
+                <span asp-validation-for="ProductName" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="Product.ProductSku" class="col-md-2 control-label"></label>
+            <label asp-for="ProductSku" class="col-md-2 control-label"></label>
             <div class="col-md-6">
-                <input asp-for="Product.ProductSku" class="form-control" placeholder="Enter Product ProductSku" />
-                <span asp-validation-for="Product.ProductSku" class="text-danger"></span>
+                <input asp-for="ProductSku" class="form-control" placeholder="Enter Product ProductSku" />
+                <span asp-validation-for="ProductSku" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="Product.ProductPrice" class="col-md-2 control-label"></label>
+            <label asp-for="ProductPrice" class="col-md-2 control-label"></label>
             <div class="col-md-6">
-                <input asp-for="Product.ProductPrice" class="form-control" placeholder="Enter Product ProductPrice" />
-                <span asp-validation-for="Product.ProductPrice" class="text-danger"></span>
+                <input asp-for="ProductPrice" class="form-control" placeholder="Enter Product ProductPrice" />
+                <span asp-validation-for="ProductPrice" class="text-danger"></span>
             </div>
         </div>
 
         <div class="form-group">
-            <label asp-for="Product.CategoryId" class="col-md-2 control-label"></label>
+            <label asp-for="CategoryId" class="col-md-2 control-label"></label>
             <div class="col-md-4">
-                @Html.DropDownListFor(m => m.Product.CategoryId,
-                                       new SelectList(Model.Categories.Select(x => new { Value = x.Id, Text = x.Name }), "Value", "Text"), "Select Category",
+             @Html.DropDownListFor(m => m.CategoryId,
+                                       new SelectList(Model.Categories.Select(x => new 
+                                       { 
+                                           Value = x.Id, 
+                                           Text = x.Name, 
+                                           Selected = x.Id == Model.CategoryId 
+                                           }), "Value", "Text"), "Select Category",
                                        htmlAttributes: new { @class = "form-control border-input" })
-                <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
             </div>
 
 

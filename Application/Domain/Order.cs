@@ -15,9 +15,4 @@ namespace GadgetCommerce_v2.Application.Domain
         public int OrderStatus {get;  set;}
     }
     
-    public enum OrderStatus
-    {
-        Pending = 0,
-        Completed = 1
-    }
 }
