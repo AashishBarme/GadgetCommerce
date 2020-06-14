@@ -70,6 +70,10 @@ namespace GadgetCommerce_v2.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(ProductCreateVM createVM, IFormFile file)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(createVM);
+            }
             if(file.Length > 0)
             {
                string wwwRootPath = _hostEnvironment.WebRootPath;
@@ -105,6 +109,10 @@ namespace GadgetCommerce_v2.Controllers
         [HttpPost]
         public async Task<IActionResult> Update(ProductUpdateVM updateVM, IFormFile file, string productImage)
         {   
+            if (!ModelState.IsValid)
+            {
+                return View(updateVM);
+            }
             updateVM.ProductImage = productImage;
             if(file != null)
             {

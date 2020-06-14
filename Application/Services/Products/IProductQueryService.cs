@@ -8,6 +8,7 @@ namespace GadgetCommerce_v2.Application.Services.Products
     {
         IEnumerable<Product> ListWithCategoryName();
         Product GetById(int id);
+        int Count();
 
     }
 }

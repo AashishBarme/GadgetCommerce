@@ -10,14 +10,14 @@ namespace GadgetCommerce_v2.Application.Helpers
     {
         public string Slugify(string title)
         {
+            if (string.IsNullOrEmpty(title))
+            {
+                return "na";
+            }
             title = title.Replace(" ","-");
             string slug = title.ToLower();
             return slug;
         }
 
-        public string ImageUploader()
-        {
-            return "Hello";
-        }
     }
 }

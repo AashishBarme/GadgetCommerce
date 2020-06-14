@@ -8,6 +8,7 @@ namespace GadgetCommerce_v2.Application.Services.Orders
         IEnumerable<Order> ListWithCategoryAndProductName();
         Order GetById(int id);
         string GetOrderStatusValue(int id);
+        int Count();
         
     }
 }

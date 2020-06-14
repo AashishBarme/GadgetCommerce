@@ -1,8 +1,45 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
+@using GadgetCommerce_v2.Application.ViewModel
+@model HomeViewModel
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+<div class="row">
+    <div class="card" style="width: 18rem;margin:20px;">
+            <div class="card-body">
+                <h5 class="card-title">Products</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Total: @Model.TotalProduct </h6>
+             
+                <a class="card-link" asp-controller="Product" asp-action="List"><button type="button" class="btn btn-primary">View List</button></a>
+                <a  class="card-link" asp-controller="Product" asp-action="Create"><button type="button" class="btn btn-success">Create</button></a>
+            </div>
+    </div>
+    <div class="card" style="width: 18rem;margin:20px;">
+            <div class="card-body">
+                <h5 class="card-title">Categories</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Total: @Model.TotalCategory</h6>
+             
+                <a  class="card-link" asp-controller="Category" asp-action="List"><button type="button" class="btn btn-primary">View List</button></a>
+                <a  class="card-link" asp-controller="Category" asp-action="Create"><button type="button" class="btn btn-success">Create</button></a>
+            </div>
+    </div>
+    <div class="card" style="width: 18rem;margin:20px;">
+            <div class="card-body">
+                <h5 class="card-title">Customers</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Total: @Model.TotalCustomer</h6>
+             
+                <a  class="card-link" asp-controller="Customer" asp-action="List"><button type="button" class="btn btn-primary">View List</button></a>
+                <a  class="card-link" asp-controller="Customer" asp-action="Create"><button type="button" class="btn btn-success">Create</button></a>
+            </div>
+    </div>
+    <div class="card" style="width: 18rem;margin:20px;">
+            <div class="card-body">
+                <h5 class="card-title">Orders</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Total: @Model.TotalOrder</h6>
+             
+                <a  class="card-link" asp-controller="Orders" asp-action="List"><button type="button" class="btn btn-primary">View List</button></a>
+            </div>
+    </div>
 </div>

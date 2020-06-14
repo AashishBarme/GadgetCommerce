@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using GadgetCommerce_v2.Application.Domain;
 using GadgetCommerce_v2.Application.Services.Customers;
 using GadgetCommerce_v2.Application.Services.Customers.ViewModel;
 
@@ -22,9 +23,20 @@ namespace GadgetCommerce_v2.Controllers
         public IActionResult List()
         {
             var customers = _query.List();
+            var ListVM = new List<CustomerListVM>();
             if(customers.Count() == 0 ) return View("Empty");
+            foreach (Customer customer in customers )
+            {
+                ListVM.Add( new CustomerListVM()
+                {
+                    Id = customer.Id,
+                    UserName = customer.UserName,
+                    LastLogin = customer.LastLogin,
+                    LastLoginIpAddress = customer.LastLoginIpAddress
+                });
+            }
 
-            return View(customers);
+            return View(ListVM);
             
         }
 
@@ -36,6 +48,10 @@ namespace GadgetCommerce_v2.Controllers
         [HttpPost]
         public IActionResult Create(CustomerCreateVM createVM)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(createVM);
+            }
             _command.Create(createVM);
             return RedirectToAction("List");
         }
@@ -49,6 +65,10 @@ namespace GadgetCommerce_v2.Controllers
         [HttpPost]
         public IActionResult Update(CustomerUpdateVM updateVM)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(updateVM);
+            }
             _command.Update(updateVM);
             return RedirectToAction("List");
         }

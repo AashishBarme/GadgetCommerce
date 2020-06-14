@@ -56,6 +56,10 @@ namespace GadgetCommerce_v2.Controllers
         [HttpPost]
         public IActionResult Create(AdminCreateVM createVM)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(createVM);
+            }
              _command.Create(createVM);
              return RedirectToAction("List");
         }
@@ -75,6 +79,10 @@ namespace GadgetCommerce_v2.Controllers
         [HttpPost]
         public IActionResult Update(AdminUpdateVM updateVM)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(updateVM);
+            }
              _command.Update(updateVM);
              return RedirectToAction("List");
         }

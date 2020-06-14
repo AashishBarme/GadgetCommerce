@@ -76,6 +76,10 @@ namespace GadgetCommerce_v2.Controllers
         [HttpPost]
         public IActionResult Update(OrderUpdateVM updateVM)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(updateVM);
+            }
             _command.Update(updateVM);
             return RedirectToAction("List");
         }

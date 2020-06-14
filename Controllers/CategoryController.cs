@@ -48,6 +48,10 @@ namespace GadgetCommerce_v2.Controllers
         [HttpPost]
         public IActionResult Create(CategoryCreateVM createVM)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(createVM);
+            }
             createVM.Slug = _helpers.Slugify(createVM.Name);
 
             _command.Create(createVM);
@@ -62,11 +66,15 @@ namespace GadgetCommerce_v2.Controllers
             updateVM.Slug = category.Slug;
             updateVM.Description = category.Description;
             
-            return View(category);
+            return View(updateVM);
         }
         [HttpPost]
         public IActionResult Update(CategoryUpdateVM updateVM)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(updateVM);
+            }
             updateVM.Slug = _helpers.Slugify(updateVM.Name);
 
             _command.Update(updateVM);

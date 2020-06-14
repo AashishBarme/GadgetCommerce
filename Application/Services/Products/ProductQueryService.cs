@@ -24,5 +24,10 @@ namespace GadgetCommerce_v2.Application.Services.Products
         {
             return _context.Product.Find(id);
         }
+
+        public int Count()
+        {
+            return _context.Product.Where(x => true).Count();
+        }
     }
 }

@@ -44,5 +44,10 @@ namespace GadgetCommerce_v2.Application.Services.Orders
             }
             return status;
         }
+
+         public int Count()
+        {
+            return _context.Set<Order>().Where(x => true).Count();
+        }
     }
 }

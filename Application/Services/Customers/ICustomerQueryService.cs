@@ -7,5 +7,6 @@ namespace GadgetCommerce_v2.Application.Services.Customers
     {
         IEnumerable<Customer> List();
         Customer GetById(int id);
+        int Count();
     }
 }

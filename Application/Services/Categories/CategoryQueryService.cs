@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using GadgetCommerce_v2.Data;
 using GadgetCommerce_v2.Application.Domain;
 using GadgetCommerce_v2.Application.Services.Categories.ViewModel;
+
 namespace GadgetCommerce_v2.Application.Services.Categories
 {
     public class CategoryQueryService : ICategoryQueryService
@@ -22,6 +24,10 @@ namespace GadgetCommerce_v2.Application.Services.Categories
         public IEnumerable<Category> List()
         {
             return _context.Set<Category>();
+        }
+         public int Count()
+        {
+            return _context.Category.Where(x => true).Count();
         }
     }
 }

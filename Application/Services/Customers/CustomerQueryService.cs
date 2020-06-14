@@ -23,6 +23,10 @@ namespace GadgetCommerce_v2.Application.Services.Customers
             return _context.Set<Customer>();
         }
 
+         public int Count()
+        {
+            return _context.Customer.Where(x => true).Count();
+        }
                           
     }
 }
