@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace GadgetCommerce_v2
+namespace GadgetCommerce
 {
     public class Program
     {

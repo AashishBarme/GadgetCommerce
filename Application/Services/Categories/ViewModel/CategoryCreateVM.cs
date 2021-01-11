@@ -2,9 +2,9 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using GadgetCommerce_v2.Application.Domain;
+using GadgetCommerce.Application.Domain;
 
-namespace GadgetCommerce_v2.Application.Services.Categories.ViewModel
+namespace GadgetCommerce.Application.Services.Categories.ViewModel
 {
     public class CategoryCreateVM 
     {

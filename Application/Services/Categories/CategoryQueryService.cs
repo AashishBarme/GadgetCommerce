@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using GadgetCommerce_v2.Data;
-using GadgetCommerce_v2.Application.Domain;
-using GadgetCommerce_v2.Application.Services.Categories.ViewModel;
+using GadgetCommerce.Data;
+using GadgetCommerce.Application.Domain;
+using GadgetCommerce.Application.Services.Categories.ViewModel;
 
-namespace GadgetCommerce_v2.Application.Services.Categories
+namespace GadgetCommerce.Application.Services.Categories
 {
     public class CategoryQueryService : ICategoryQueryService
     {

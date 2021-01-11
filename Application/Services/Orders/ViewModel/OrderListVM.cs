@@ -1,4 +1,4 @@
-namespace GadgetCommerce_v2.Application.Services.Orders.ViewModel
+namespace GadgetCommerce.Application.Services.Orders.ViewModel
 {
     public class OrderListVM
     {

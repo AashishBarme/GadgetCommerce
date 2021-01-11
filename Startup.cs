@@ -9,14 +9,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
-using GadgetCommerce_v2.Data;
-using GadgetCommerce_v2.Application.Services.Categories;
-using GadgetCommerce_v2.Application.Services.Customers;
-using GadgetCommerce_v2.Application.Services.Products;
-using GadgetCommerce_v2.Application.Services.Orders;
-using GadgetCommerce_v2.Application.Services.Admins;
+using GadgetCommerce.Data;
+using GadgetCommerce.Application.Services.Categories;
+using GadgetCommerce.Application.Services.Customers;
+using GadgetCommerce.Application.Services.Products;
+using GadgetCommerce.Application.Services.Orders;
+using GadgetCommerce.Application.Services.Admins;
 
-namespace GadgetCommerce_v2
+namespace GadgetCommerce
 {
     public class Startup
     {

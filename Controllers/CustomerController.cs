@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using GadgetCommerce_v2.Application.Domain;
-using GadgetCommerce_v2.Application.Services.Customers;
-using GadgetCommerce_v2.Application.Services.Customers.ViewModel;
+using GadgetCommerce.Application.Domain;
+using GadgetCommerce.Application.Services.Customers;
+using GadgetCommerce.Application.Services.Customers.ViewModel;
 
-namespace GadgetCommerce_v2.Controllers
+namespace GadgetCommerce.Controllers
 {
     public class CustomerController : Controller 
     {

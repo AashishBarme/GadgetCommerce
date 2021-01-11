@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
-namespace GadgetCommerce_v2.Application.Domain
+namespace GadgetCommerce.Application.Domain
 {
     public class Admin
     {

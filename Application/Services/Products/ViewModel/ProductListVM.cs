@@ -3,7 +3,7 @@ using System.Collections;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GadgetCommerce_v2.Application.Services.Products.ViewModel
+namespace GadgetCommerce.Application.Services.Products.ViewModel
 {
     public class ProductListVM
     {

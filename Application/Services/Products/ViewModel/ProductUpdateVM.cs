@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using GadgetCommerce_v2.Application.Domain;
+using GadgetCommerce.Application.Domain;
 using System.ComponentModel;
-namespace GadgetCommerce_v2.Application.Services.Products.ViewModel
+namespace GadgetCommerce.Application.Services.Products.ViewModel
 {
     public class ProductUpdateVM
     {

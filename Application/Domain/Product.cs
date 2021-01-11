@@ -4,7 +4,7 @@ using System.ComponentModel;
 using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 
-namespace GadgetCommerce_v2.Application.Domain
+namespace GadgetCommerce.Application.Domain
 {
     public class Product
     {

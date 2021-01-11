@@ -1,9 +1,9 @@
 using System;
-using GadgetCommerce_v2.Data;
-using GadgetCommerce_v2.Application.Domain;
+using GadgetCommerce.Data;
+using GadgetCommerce.Application.Domain;
 using Microsoft.EntityFrameworkCore;
-using GadgetCommerce_v2.Application.Services.Customers.ViewModel;
-namespace GadgetCommerce_v2.Application.Services.Customers
+using GadgetCommerce.Application.Services.Customers.ViewModel;
+namespace GadgetCommerce.Application.Services.Customers
 {
     public class CustomerCommandService : ICustomerCommandService
     {

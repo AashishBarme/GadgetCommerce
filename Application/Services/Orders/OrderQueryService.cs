@@ -1,11 +1,11 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
-using GadgetCommerce_v2.Data;
-using GadgetCommerce_v2.Application.Domain;
+using GadgetCommerce.Data;
+using GadgetCommerce.Application.Domain;
 using Microsoft.EntityFrameworkCore;
 
-namespace GadgetCommerce_v2.Application.Services.Orders
+namespace GadgetCommerce.Application.Services.Orders
 {
     public class OrderQueryService : IOrderQueryService
     {

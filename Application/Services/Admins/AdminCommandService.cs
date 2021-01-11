@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
-using GadgetCommerce_v2.Application.Domain;
-using GadgetCommerce_v2.Data;
+using GadgetCommerce.Application.Domain;
+using GadgetCommerce.Data;
 using Microsoft.EntityFrameworkCore;
-using GadgetCommerce_v2.Application.Services.Admins.ViewModel;
+using GadgetCommerce.Application.Services.Admins.ViewModel;
 
 
-namespace GadgetCommerce_v2.Application.Services.Admins
+namespace GadgetCommerce.Application.Services.Admins
 {
     public class AdminCommandService : IAdminCommandService
     {

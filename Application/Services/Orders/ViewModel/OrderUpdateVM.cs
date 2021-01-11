@@ -1,5 +1,5 @@
-using GadgetCommerce_v2.Application.Domain;
-namespace GadgetCommerce_v2.Application.Services.Orders.ViewModel
+using GadgetCommerce.Application.Domain;
+namespace GadgetCommerce.Application.Services.Orders.ViewModel
 {
     public class OrderUpdateVM
     {

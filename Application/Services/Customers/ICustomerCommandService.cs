@@ -1,6 +1,6 @@
-using GadgetCommerce_v2.Application.Services.Customers.ViewModel;
-using GadgetCommerce_v2.Application.Domain;
-namespace GadgetCommerce_v2.Application.Services.Customers
+using GadgetCommerce.Application.Services.Customers.ViewModel;
+using GadgetCommerce.Application.Domain;
+namespace GadgetCommerce.Application.Services.Customers
 {
     public interface ICustomerCommandService
     {

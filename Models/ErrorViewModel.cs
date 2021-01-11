@@ -1,6 +1,6 @@
 using System;
 
-namespace GadgetCommerce_v2.Models
+namespace GadgetCommerce.Models
 {
     public class ErrorViewModel
     {

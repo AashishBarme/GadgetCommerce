@@ -1,10 +1,10 @@
-using GadgetCommerce_v2.Data;
-using GadgetCommerce_v2.Application.Domain;
+using GadgetCommerce.Data;
+using GadgetCommerce.Application.Domain;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
-namespace GadgetCommerce_v2.Application.Services.Customers
+namespace GadgetCommerce.Application.Services.Customers
 {
     public class CustomerQueryService : ICustomerQueryService
     {

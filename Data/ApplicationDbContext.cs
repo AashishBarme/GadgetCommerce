@@ -1,10 +1,10 @@
 using System;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using GadgetCommerce_v2.Application.Domain;
+using GadgetCommerce.Application.Domain;
 
 
-namespace GadgetCommerce_v2.Data
+namespace GadgetCommerce.Data
 {
     public class ApplicationDbContext : DbContext
     {

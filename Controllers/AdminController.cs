@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using GadgetCommerce_v2.Application.Domain;
-using GadgetCommerce_v2.Application.Services.Admins;
-using GadgetCommerce_v2.Application.Services.Admins.ViewModel;
+using GadgetCommerce.Application.Domain;
+using GadgetCommerce.Application.Services.Admins;
+using GadgetCommerce.Application.Services.Admins.ViewModel;
 
-namespace GadgetCommerce_v2.Controllers
+namespace GadgetCommerce.Controllers
 {
     public class AdminController : Controller
     {

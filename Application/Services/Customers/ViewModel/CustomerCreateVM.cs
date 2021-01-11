@@ -1,4 +1,4 @@
-namespace GadgetCommerce_v2.Application.Services.Customers.ViewModel
+namespace GadgetCommerce.Application.Services.Customers.ViewModel
 {
     public class CustomerCreateVM
     {

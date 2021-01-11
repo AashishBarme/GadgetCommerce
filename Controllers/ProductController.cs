@@ -6,14 +6,14 @@ using System.IO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-using GadgetCommerce_v2.Application.Helpers;
+using GadgetCommerce.Application.Helpers;
 using Microsoft.AspNetCore.Hosting;
-using GadgetCommerce_v2.Application.Domain;
-using GadgetCommerce_v2.Application.Services.Products;
-using GadgetCommerce_v2.Application.Services.Categories;
-using GadgetCommerce_v2.Application.Services.Products.ViewModel;
+using GadgetCommerce.Application.Domain;
+using GadgetCommerce.Application.Services.Products;
+using GadgetCommerce.Application.Services.Categories;
+using GadgetCommerce.Application.Services.Products.ViewModel;
 
-namespace GadgetCommerce_v2.Controllers
+namespace GadgetCommerce.Controllers
 {
     public class ProductController : Controller
     {

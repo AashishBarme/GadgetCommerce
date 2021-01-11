@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using GadgetCommerce_v2.Application.Domain;
-using GadgetCommerce_v2.Application.Services.Orders.ViewModel;
-namespace GadgetCommerce_v2.Application.Services.Orders
+using GadgetCommerce.Application.Domain;
+using GadgetCommerce.Application.Services.Orders.ViewModel;
+namespace GadgetCommerce.Application.Services.Orders
 {
     public interface IOrderCommandService
     {

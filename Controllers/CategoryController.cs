@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using GadgetCommerce_v2.Application.Helpers;
-using GadgetCommerce_v2.Application.Services.Categories;
-using GadgetCommerce_v2.Application.Services.Categories.ViewModel;
-using GadgetCommerce_v2.Application.Domain;
-namespace GadgetCommerce_v2.Controllers
+using GadgetCommerce.Application.Helpers;
+using GadgetCommerce.Application.Services.Categories;
+using GadgetCommerce.Application.Services.Categories.ViewModel;
+using GadgetCommerce.Application.Domain;
+namespace GadgetCommerce.Controllers
 {
     public class CategoryController : Controller
     {

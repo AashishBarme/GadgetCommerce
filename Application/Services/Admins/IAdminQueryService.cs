@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using GadgetCommerce_v2.Application.Services.Admins.ViewModel;
-using GadgetCommerce_v2.Application.Domain;
-namespace GadgetCommerce_v2.Application.Services.Admins
+using GadgetCommerce.Application.Services.Admins.ViewModel;
+using GadgetCommerce.Application.Domain;
+namespace GadgetCommerce.Application.Services.Admins
 {
     public interface IAdminQueryService
     {   

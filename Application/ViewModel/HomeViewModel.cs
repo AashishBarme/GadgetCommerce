@@ -1,4 +1,4 @@
-namespace GadgetCommerce_v2.Application.ViewModel
+namespace GadgetCommerce.Application.ViewModel
 {
     public class HomeViewModel
     {

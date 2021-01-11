@@ -1,4 +1,4 @@
-namespace GadgetCommerce_v2.Application.Enums
+namespace GadgetCommerce.Application.Enums
 {
        public enum OrderStatus
         {

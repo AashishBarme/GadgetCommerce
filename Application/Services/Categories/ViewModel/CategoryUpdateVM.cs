@@ -1,4 +1,4 @@
-namespace GadgetCommerce_v2.Application.Services.Categories.ViewModel
+namespace GadgetCommerce.Application.Services.Categories.ViewModel
 {
     public class CategoryUpdateVM
     {

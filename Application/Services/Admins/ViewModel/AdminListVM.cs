@@ -1,4 +1,4 @@
-namespace GadgetCommerce_v2.Application.Services.Admins.ViewModel
+namespace GadgetCommerce.Application.Services.Admins.ViewModel
 {
     public class AdminListVM
     {

@@ -1,10 +1,10 @@
-using GadgetCommerce_v2.Data;
-using GadgetCommerce_v2.Application.Domain;
+using GadgetCommerce.Data;
+using GadgetCommerce.Application.Domain;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using GadgetCommerce_v2.Application.Services.Products.ViewModel;
-namespace GadgetCommerce_v2.Application.Services.Products
+using GadgetCommerce.Application.Services.Products.ViewModel;
+namespace GadgetCommerce.Application.Services.Products
 {
     public class ProductQueryService : IProductQueryService
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace GadgetCommerce_v2.Application.Helpers
+namespace GadgetCommerce.Application.Helpers
 {
     public class Helpers
     {
