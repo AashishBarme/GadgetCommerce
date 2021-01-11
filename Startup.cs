@@ -31,7 +31,7 @@ namespace GadgetCommerce_v2
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseMySql("Server=localhost;Database=GadgetCommerce;User Id=admin;Password=65403;"));
+            options.UseMySql("Server=localhost;Database=GadgetCommerce;User Id=admin;Password=admin;"));
             services.AddTransient<ICategoryCommandService, CategoryCommandService>();
             services.AddTransient<ICategoryQueryService, CategoryQueryService>();
             services.AddTransient<ICustomerCommandService, CustomerCommandService>();
