@@ -192,6 +192,12 @@ namespace GadgetCommerce.Migrations
                     b.Property<string>("ProductSlug")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TemporaryCategory")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");

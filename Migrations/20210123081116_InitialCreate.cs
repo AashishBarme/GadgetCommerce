@@ -66,6 +66,8 @@ namespace GadgetCommerce.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Status = table.Column<int>(nullable: false),
+                    TemporaryCategory = table.Column<string>(nullable: true),
                     CategoryId = table.Column<int>(nullable: false),
                     ProductName = table.Column<string>(nullable: false),
                     ProductSlug = table.Column<string>(nullable: true),
