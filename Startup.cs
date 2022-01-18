@@ -30,8 +30,13 @@ namespace GadgetCommerce
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+           
+                
             services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseMySql("Server=localhost;Database=GadgetCommerce;User Id=admin;Password=admin;"));
+            {
+                options.UseMySql(Configuration.GetConnectionString("DefaultConnection"));
+            });
+            // options.UseMySql("Server=localhost;Database=GadgetCommerce;UserId=admin;Password=admin;"));
             services.AddTransient<ICategoryCommandService, CategoryCommandService>();
             services.AddTransient<ICategoryQueryService, CategoryQueryService>();
             services.AddTransient<ICustomerCommandService, CustomerCommandService>();
